@@ -1,0 +1,8 @@
+services:
+  react:
+    build:
+      context: ./react
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./react/src:/app/src
