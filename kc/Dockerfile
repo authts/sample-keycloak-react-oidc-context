@@ -8,3 +8,4 @@ RUN /opt/keycloak/bin/kc.sh build
 FROM ${KEYCLOAK_IMAGE} as final
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 ENTRYPOINT [ "/opt/keycloak/bin/kc.sh" ]
+CMD [ "start", "--optimized" ]

@@ -1,6 +1,7 @@
 services:
   db:
-    image: postgres:16.2-bookworm
+    build:
+      context: ./db
     ports:
       - 5432:5432
     env_file:
@@ -15,7 +16,6 @@ services:
       - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
     env_file:
       - .env
-    command: start --optimized
 
   react:
     depends_on:
