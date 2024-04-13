@@ -13,6 +13,7 @@ So, figured it'd be useful to make an explainer-project.
 ## Setup
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
+1. Copy file `.env.sample` to file `.env`
 1. Build images
 
         docker compose build
