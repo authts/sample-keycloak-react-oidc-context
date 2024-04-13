@@ -8,7 +8,7 @@ Minimal, reproducible example for Keycloak + React.
 
 I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context](https://github.com/authts/react-oidc-context) repo on how to use it with Keycloak.
 
-So, figured it'd be useful to make an explainer-project.
+So, figured it'd be helpful to make an explainer-project, as a way to give back to these open-source projects.
 
 ## Setup
 
