@@ -2,6 +2,7 @@ services:
   db:
     build:
       context: ./db
+    shm_size: 128mb
     ports:
       - 5432:5432
     env_file:
