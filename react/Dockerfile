@@ -1,6 +1,6 @@
-FROM node:20.12-bookworm
+FROM oven/bun:1-debian
 WORKDIR /app
-COPY package*.json .
-RUN npm install
+COPY package.json bun.lockb ./
+RUN bun install
 COPY . .
-CMD [ "npm", "run", "dev" ]
+CMD [ "bun", "run", "dev" ]
