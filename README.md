@@ -8,7 +8,7 @@ Minimal, reproducible example for Keycloak + React.
 
 I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context](https://github.com/authts/react-oidc-context) repo on how to use it with Keycloak.
 
-So, figured it'd be helpful to make an explainer-project, as a way to give back to these open-source projects.
+So, thought it'd be cool to make a little project that glues these tools together, as a way to give back.
 
 ## Setup
 
@@ -27,9 +27,13 @@ So, figured it'd be helpful to make an explainer-project, as a way to give back 
 ## Services
 
 - `db` - The postgres database used by Keycloak
-- `kc` - The Keycloak instance
+- `kc` - The Keycloak server
 - `mailhog` - The email server
-- `react` - The single page app (SPA)
+- `react` - The React single page app (SPA)
+
+## Seeded data
+
+- TODO client, user
 
 ## Disclaimers
 
