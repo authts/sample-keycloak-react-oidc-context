@@ -33,7 +33,11 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Seeded data
 
-- TODO client, user
+- TODO
+
+## High-level authentication flow
+
+1. TODO
 
 ## Disclaimers
 
