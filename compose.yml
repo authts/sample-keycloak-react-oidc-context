@@ -27,7 +27,6 @@ services:
     build:
       context: ./mailhog
     ports:
-      - ${MH_SMTP_BIND_ADDR_PORT}:${MH_SMTP_BIND_ADDR_PORT}
       - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
     env_file:
       - .env
