@@ -26,25 +26,29 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
         docker compose up
 
-1. Go to http://localhost:5173
-
-## Services
-
-| Service | Description                        |
-| ------- | ---------------------------------- |
-| db      | Postgres database used by Keycloak |
-| kc      | Keycloak server                    |
-| mailhog | Email server used by Keycloak      |
-| react   | React app                          |
+1. See [links](#links)
 
 ## Links
 
-| Thing                    | Link                  |
-| ------------------------ | --------------------- |
-| React app                | http://localhost:5173 |
-| Keycloak admin console   | TODO                  |
-| Keycloak account console | TODO                  |
-| Mailhog UI               | TODO                  |
+- React app
+    - Link: http://localhost:5173
+    - Username: `betty@example.com`
+    - Password: `TODO`
+- Keycloak account console
+    - Link: TODO
+    - Username: `betty@example.com`
+    - Password: `TODO`
+- Keycloak admin console
+    - Link: TODO
+    - Username: `admin`
+    - Password: `admin`
+
+## Services
+
+- `db` - Postgres database used by Keycloak
+- `kc` - Keycloak server
+- `mailhog` - Email server used by Keycloak
+- `react` - React app
 
 ## Seeded data
 
