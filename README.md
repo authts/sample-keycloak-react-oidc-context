@@ -63,14 +63,41 @@ In another terminal, run the React app.
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. Here's some of the stuff that they do:
+The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It does minimal customization of the `master` realm:
 
-- Do minimal customization of the `master` realm
-    - Allow user registration on login screen
-    - Set access token lifespan to 5 mins
-    - Setup email connection via Mailhog
-- Create a public client for the React app
+### Clients
+
+Create a client with:
+
+- **General settings** > set **Client ID** to `react`
+- **Access settings** > set **Valid redirect URIs** to `http://localhost:5173/*`
+- **Access settings** > set **Valid post logout redirect URIs** to `http://localhost:5173/*`
+- **Access settings** > set **Web origins** to `*`
+- **Authentication flow** >  check **Standard flow**
+- **Authentication flow** > check **Direct access grants**
+- **Logout settings** > check **Front channel logout**
+- **Logout settings** > check **Backchannel logout session required**
+
+### Login
+
+- **Realm settings** > **Login** > check **User registration**
+- **Realm settings** > **Login** > check **Forgot password**
+- **Realm settings** > **Login** > check **Remember me**
+- **Realm settings** > **Login** > check **Email as username**
+- **Realm settings** > **Login** > check **Login with email**
+- **Realm settings** > **Login** > check **Verify email**
+
+### Tokens
+
+- **Realm settings** > **Tokens** > set **Access Token Lifespan** to `5 mins`
+
+### Email
+
+- **Realm settings** > **Email** > set **From** to `no-reply@example.com`
+- **Realm settings** > **Email** > set **Host** to `mailhog`
+- **Realm settings** > **Email** > set **Port** to `1025`
 
 ## Disclaimers
 
+- For convenience, the admin user is also used for regular app logins. In the real world, the admin account would be locked down, and you'd have regular, non-admin users
 - The `Dockerfile` for each service is optimized for local development, **not** production
