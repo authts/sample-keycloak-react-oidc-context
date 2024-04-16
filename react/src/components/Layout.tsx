@@ -14,6 +14,7 @@ const Container = styled.div`
 
 const NavBar = styled.nav`
   display: flex;
+  align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid;
@@ -22,11 +23,16 @@ const NavBar = styled.nav`
 const NavTitle = styled.div`
   flex-grow: 1;
   font-weight: bold;
+  font-style: italic;
 `;
 
 const NavButtons = styled.div`
   display: flex;
   gap: 1rem;
+`;
+
+const NavButton = styled.button`
+  padding: 0.5rem 1rem;
 `;
 
 type NavItemType = {
@@ -67,12 +73,12 @@ const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <Container>
       <NavBar>
-        <NavTitle>Sample App</NavTitle>
+        <NavTitle>Example App</NavTitle>
         <NavButtons>
           {navItems.map((item) => (
-            <button key={item.text} onClick={item.action}>
+            <NavButton key={item.text} onClick={item.action}>
               {item.text}
-            </button>
+            </NavButton>
           ))}
         </NavButtons>
       </NavBar>
