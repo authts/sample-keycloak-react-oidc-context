@@ -63,7 +63,7 @@ In another terminal, run the React app.
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It does minimal customization of the `master` realm:
+The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It customizes of the `master` realm:
 
 ### Clients
 
