@@ -24,7 +24,7 @@ The Keycloak server and Postgres database will run in Docker Compose. The React 
 
 1. Run containers
 
-        docker compose up --build
+        docker compose up
 
 ### React app
 
