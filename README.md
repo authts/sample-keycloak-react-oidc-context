@@ -12,7 +12,7 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Setup
 
-In one terminal, run the Keycloak server and Postgres database via Docker Compose.
+In one terminal, run the Postgres database, Keycloak server, and Mailhog via Docker Compose.
 
 In another terminal, run the React app.
 
@@ -50,15 +50,17 @@ In another terminal, run the React app.
 - React app
     - **Link**: http://localhost:5173
     - **Credentials**: `betty@example.com` / `rQ^pa7C3Qh*qNP`
+- Mailhog UI
+    - **Link**: http://localhost:8025
 - Keycloak account console
     - **Link**: http://localhost:8080/realms/master/account/
     - **Credentials**: _same as react app_
+- OpenID Endpoint Configuration
+    - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
 - Keycloak admin console
     - **Link**: http://localhost:8080/admin/master/console/
     - **Credentials**: `admin` / `admin`
-    - **Notes**: Open this in an incognito window
-- OpenID Endpoint Configuration
-    - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
+    - **Notes**: Open this in an _incognito_ window
 
 ## Seeded data
 

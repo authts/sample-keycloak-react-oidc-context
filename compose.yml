@@ -19,3 +19,13 @@ services:
       - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
     env_file:
       - .env
+
+  mailhog:
+    depends_on:
+      - kc
+    build:
+      context: ./mailhog
+    ports:
+      - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
+    env_file:
+      - .env
