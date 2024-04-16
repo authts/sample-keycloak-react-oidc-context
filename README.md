@@ -53,21 +53,21 @@ The Keycloak server and Postgres database will run in Docker Compose. The React 
     - Credentials: _same as react app_
 - Keycloak admin console
     - Link: http://localhost:8080/admin/master/console/
-    - Username: `admin` / `admin`
+    - Credentials: `admin` / `admin`
 - OpenID Endpoint Configuration
     - Link: http://localhost:8080/realms/master/.well-known/openid-configuration
 
 ## Seeded data
 
-- TODO
+The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup:
+
+- Minimal customization of the `master` realm
+- A public client for the React app named `react`
+- An example user with email `betty@example.com`
 
 ## High-level authentication flow
 
 1. TODO
-
-## Tinkering
-
-TODO
 
 ## Disclaimers
 
