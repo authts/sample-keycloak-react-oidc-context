@@ -69,6 +69,7 @@ The `db/init` folder contains SQL files which are mounted into the Postgres cont
 - Do minimal customization of the `master` realm
     - Allow user registration on login screen
     - Set access token lifespan to 5 mins
+    - Setup email connection via Mailhog
 - Create a public client for the React app, named `react`
 - Create an example user with email `betty@example.com`
 
