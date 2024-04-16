@@ -30,7 +30,7 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 | ------- | ---------------------------------- |
 | db      | Postgres database used by Keycloak |
 | kc      | Keycloak server                    |
-| mailhog | Email server                       |
+| mailhog | Email server used by Keycloak      |
 | react   | React app                          |
 
 ## Links
