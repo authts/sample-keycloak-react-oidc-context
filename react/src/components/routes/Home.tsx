@@ -27,14 +27,14 @@ const Home: React.FC = () => {
       <h1>Home</h1>
 
       <h2>
-        <code>auth.user</code>
-      </h2>
-      <SimpleTable rows={createRows(auth.user).filter((row) => row.label !== 'profile')} />
-
-      <h2>
         <code>auth.user?.profile</code>
       </h2>
       <SimpleTable rows={createRows(auth.user?.profile)} />
+
+      <h2>
+        <code>auth.user</code>
+      </h2>
+      <SimpleTable rows={createRows(auth.user).filter((row) => row.label !== 'profile')} />
 
       <h2>
         <code>auth.settings</code>

@@ -12,7 +12,9 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Setup
 
-The Keycloak server and Postgres database will run in Docker Compose. The React app will run separately.
+In one terminal, run the Keycloak server and Postgres database via Docker Compose.
+
+In another terminal, run the React app.
 
 ### Docker Compose
 
