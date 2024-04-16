@@ -14,6 +14,10 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
 1. Copy file `.env.sample` to file `.env`
+1. Pull images
+
+        docker compose pull
+
 1. Build images
 
         docker compose build
