@@ -46,16 +46,16 @@ The Keycloak server and Postgres database will run in Docker Compose. The React 
 ## Links
 
 - React app
-    - Link: http://localhost:5173
-    - Credentials: `betty@example.com` / `rQ^pa7C3Qh*qNP`
+    - **Link**: http://localhost:5173
+    - **Credentials**: `betty@example.com` / `rQ^pa7C3Qh*qNP`
 - Keycloak account console
-    - Link: http://localhost:8080/realms/master/account/
-    - Credentials: _same as react app_
+    - **Link**: http://localhost:8080/realms/master/account/
+    - **Credentials**: _same as react app_
 - Keycloak admin console
-    - Link: http://localhost:8080/admin/master/console/
-    - Credentials: `admin` / `admin`
+    - **Link**: http://localhost:8080/admin/master/console/
+    - **Credentials**: `admin` / `admin`
 - OpenID Endpoint Configuration
-    - Link: http://localhost:8080/realms/master/.well-known/openid-configuration
+    - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
 
 ## Seeded data
 
