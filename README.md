@@ -59,7 +59,7 @@ In another terminal, run the React app.
     - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
 - Keycloak admin console
     - **Link**: http://localhost:8080/admin/master/console/
-    - **Credentials**: `admin` / `admin`
+    - **Credentials**: `admin@example.com` / `admin`
     - **Notes**: Open this in an _incognito_ window
 
 ## Seeded data

@@ -1240,10 +1240,10 @@ password	password	t	t	04d6226e-e85e-4251-b423-a3525954ba75
 COPY public.realm_smtp_config (realm_id, value, name) FROM stdin;
 04d6226e-e85e-4251-b423-a3525954ba75		replyToDisplayName
 04d6226e-e85e-4251-b423-a3525954ba75	false	starttls
-04d6226e-e85e-4251-b423-a3525954ba75	1025	port
 04d6226e-e85e-4251-b423-a3525954ba75		auth
-04d6226e-e85e-4251-b423-a3525954ba75		replyTo
+04d6226e-e85e-4251-b423-a3525954ba75	1025	port
 04d6226e-e85e-4251-b423-a3525954ba75	mailhog	host
+04d6226e-e85e-4251-b423-a3525954ba75		replyTo
 04d6226e-e85e-4251-b423-a3525954ba75	no-reply@example.com	from
 04d6226e-e85e-4251-b423-a3525954ba75		fromDisplayName
 04d6226e-e85e-4251-b423-a3525954ba75		envelopeFrom
