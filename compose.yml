@@ -7,9 +7,8 @@ services:
       - 5432:5432
     env_file:
       - .env
-    # TODO uncomment when ready
-    # volumes:
-    #   - ./db/init:/docker-entrypoint-initdb.d
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
 
   kc:
     depends_on:
@@ -20,25 +19,3 @@ services:
       - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
     env_file:
       - .env
-
-  mailhog:
-    depends_on:
-      - kc
-    build:
-      context: ./mailhog
-    ports:
-      - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
-    env_file:
-      - .env
-
-  react:
-    depends_on:
-      - kc
-    build:
-      context: ./react
-    ports:
-      - '${VITE_PORT}:5173'
-    env_file:
-      - .env
-    volumes:
-      - ./react/src:/app/src

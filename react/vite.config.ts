@@ -1,18 +1,27 @@
-import { UserConfigExport, defineConfig } from 'vite';
+import { UserConfigExport, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd());
+
   const commonConfig: UserConfigExport = {
     plugins: [react()],
-    base: './'
+    base: '/'
   };
 
   if (command === 'serve') {
     return {
       ...commonConfig,
       server: {
-        strictPort: true
+        open: true,
+        strictPort: true,
+        proxy: {
+          [`${env.VITE_AUTHORITY_PATH}`]: {
+            target: `http://localhost:${env.VITE_AUTHORITY_PORT}`,
+            changeOrigin: true
+          }
+        }
       }
     };
   }

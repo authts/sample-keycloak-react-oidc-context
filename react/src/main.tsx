@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
-// import ProtectedApp from './components/ProtectedApp';
+import ProtectedApp from './components/ProtectedApp';
 import Layout from './components/Layout';
 import { AuthProvider } from 'react-oidc-context';
 import { BrowserRouter } from 'react-router-dom';
@@ -17,9 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         }}
       >
         <Layout>
-          {/* <ProtectedApp> */}
-          <App />
-          {/* </ProtectedApp> */}
+          <ProtectedApp>
+            <App />
+          </ProtectedApp>
         </Layout>
       </AuthProvider>
     </BrowserRouter>

@@ -12,43 +12,53 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Setup
 
+### Docker Compose
+
 1. Install [Docker](https://docs.docker.com/get-docker/)
 1. Copy file `.env.sample` to file `.env`
-1. Pull images
-
-        docker compose pull
-
 1. Build images
 
         docker compose build
 
 1. Run containers
 
-        docker compose up
+        docker compose up --build
 
-1. See [links](#links)
+### React app
+
+1. Install [Node.js](https://nodejs.org/en)
+1. Change to `react` folder
+
+        cd react
+
+1. Install packages
+
+        npm install
+
+1. Start dev server
+
+        npm run dev
+
+1. Go to http://localhost:5173
 
 ## Links
 
 - React app
     - Link: http://localhost:5173
-    - Username: `betty@example.com`
-    - Password: `TODO`
+    - Credentials: `betty@example.com` / `rQ^pa7C3Qh*qNP`
+- Keycloak admin console
+    - Link: http://localhost:8080/admin/master/console/
+    - Username: `admin` / `admin`
 - Keycloak account console
     - Link: TODO
-    - Username: `betty@example.com`
-    - Password: `TODO`
-- Keycloak admin console
-    - Link: TODO
-    - Username: `admin`
-    - Password: `admin`
+    - Credentials: _same as react app_
+- OpenID Endpoint Configuration
+    - Link: http://localhost:8080/realms/master/.well-known/openid-configuration
 
-## Services
+## Docker Compose services
 
 - `db` - Postgres database used by Keycloak
 - `kc` - Keycloak server
-- `mailhog` - Email server used by Keycloak
-- `react` - React app
 
 ## Seeded data
 

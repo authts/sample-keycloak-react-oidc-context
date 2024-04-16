@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { hasAuthParams, useAuth } from 'react-oidc-context';
+import Alert from './Alert';
 
 interface ProtectedAppProps {
   children: ReactNode;
@@ -28,7 +29,7 @@ const ProtectedApp: React.FC<ProtectedAppProps> = (props) => {
       {auth.error ? (
         <>
           <h1>We've hit a snag</h1>
-          <p>{auth.error?.message}</p>
+          <Alert variant="error">{auth.error?.message}</Alert>
         </>
       ) : auth.isLoading ? (
         <>
@@ -37,7 +38,7 @@ const ProtectedApp: React.FC<ProtectedAppProps> = (props) => {
       ) : !auth.isAuthenticated ? (
         <>
           <h1>We've hit a snag</h1>
-          <p>Unable to sign in.</p>
+          <Alert variant="error">Unable to sign in</Alert>
         </>
       ) : (
         children
