@@ -12,6 +12,8 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Setup
 
+The Keycloak server and Postgres database will run in Docker Compose. The React app will run separately.
+
 ### Docker Compose
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
@@ -46,19 +48,14 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 - React app
     - Link: http://localhost:5173
     - Credentials: `betty@example.com` / `rQ^pa7C3Qh*qNP`
+- Keycloak account console
+    - Link: http://localhost:8080/realms/master/account/
+    - Credentials: _same as react app_
 - Keycloak admin console
     - Link: http://localhost:8080/admin/master/console/
     - Username: `admin` / `admin`
-- Keycloak account console
-    - Link: TODO
-    - Credentials: _same as react app_
 - OpenID Endpoint Configuration
     - Link: http://localhost:8080/realms/master/.well-known/openid-configuration
-
-## Docker Compose services
-
-- `db` - Postgres database used by Keycloak
-- `kc` - Keycloak server
 
 ## Seeded data
 

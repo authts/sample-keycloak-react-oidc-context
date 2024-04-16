@@ -556,6 +556,7 @@ f1dc48cb-57f7-400b-ac65-68d329be69f9	27579148-d477-446c-bba7-7252340c6c54
 
 COPY public.user_entity (id, email, email_constraint, email_verified, enabled, federation_link, first_name, last_name, realm_id, username, created_timestamp, service_account_client_link, not_before) FROM stdin;
 f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	\N	fdeb8db3-2b3c-4f4e-bb81-005eeed3ad1e	f	t	\N	\N	\N	04d6226e-e85e-4251-b423-a3525954ba75	admin	1713242628202	\N	0
+2d02276f-b6a4-4c43-90f6-827765a1d799	betty@example.com	betty@example.com	f	t	\N	Betty	Jane	04d6226e-e85e-4251-b423-a3525954ba75	betty@example.com	1713244999966	\N	0
 \.
 
 
@@ -565,6 +566,7 @@ f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	\N	fdeb8db3-2b3c-4f4e-bb81-005eeed3ad1e	f	t
 
 COPY public.credential (id, salt, type, user_id, created_date, user_label, secret_data, credential_data, priority) FROM stdin;
 79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713242628440	\N	{"value":"ldeeaAvLYPMX4dQk2Twrw+FS5Ghf5f/IcjzVgTvh/1lcOCsSOS4VkkChzZzWPJimf7wk5snf0nfu3dhNxlfiJQ==","salt":"vMQki6Cwjd7roqtkgJoZCQ==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
+c8932fd5-dabb-4b15-ad85-c31f8559da20	\N	password	2d02276f-b6a4-4c43-90f6-827765a1d799	1713245000180	\N	{"value":"uqvXbTlWHK37Dy+EPPeREuTgvaN2rPcqobewCcuXnQkxSm2X/ubucDxHkuPiJMzpXYhQ2gpedc1uQGg6o2p8uw==","salt":"GTYxDyifTCaMHCytYR3yQw==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
 \.
 
 
@@ -1441,6 +1443,7 @@ COPY public.user_required_action (user_id, required_action) FROM stdin;
 COPY public.user_role_mapping (role_id, user_id) FROM stdin;
 f1dc48cb-57f7-400b-ac65-68d329be69f9	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
 ab6a028c-b2f8-4aa8-8d8c-95077c182e4d	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
+f1dc48cb-57f7-400b-ac65-68d329be69f9	2d02276f-b6a4-4c43-90f6-827765a1d799
 \.
 
 
