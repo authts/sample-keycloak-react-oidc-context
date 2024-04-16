@@ -26,10 +26,21 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Services
 
-- `db` - The postgres database used by Keycloak
-- `kc` - The Keycloak server
-- `mailhog` - The email server
-- `react` - The React single page app (SPA)
+| Service | Description                        |
+| ------- | ---------------------------------- |
+| db      | Postgres database used by Keycloak |
+| kc      | Keycloak server                    |
+| mailhog | Email server                       |
+| react   | React app                          |
+
+## Links
+
+| Thing                    | Link                  |
+| ------------------------ | --------------------- |
+| React app                | http://localhost:5173 |
+| Keycloak admin console   | TODO                  |
+| Keycloak account console | TODO                  |
+| Mailhog UI               | TODO                  |
 
 ## Seeded data
 
@@ -38,6 +49,10 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 ## High-level authentication flow
 
 1. TODO
+
+## Tinkering
+
+TODO
 
 ## Disclaimers
 
