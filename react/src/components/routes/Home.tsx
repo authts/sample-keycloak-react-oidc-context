@@ -22,10 +22,6 @@ const createRows = (data?: unknown): Row[] => {
 const Home: React.FC = () => {
   const auth = useAuth();
 
-  const userRows = createRows(auth.user).filter((row) => row.label !== 'profile');
-  const profileRows = createRows(auth.user?.profile);
-  const settingsRows = createRows(auth.settings);
-
   return (
     <>
       <h1>Home</h1>
@@ -33,17 +29,17 @@ const Home: React.FC = () => {
       <h2>
         <code>auth.user</code>
       </h2>
-      <SimpleTable rows={userRows} />
+      <SimpleTable rows={createRows(auth.user).filter((row) => row.label !== 'profile')} />
 
       <h2>
         <code>auth.user?.profile</code>
       </h2>
-      <SimpleTable rows={profileRows} />
+      <SimpleTable rows={createRows(auth.user?.profile)} />
 
       <h2>
         <code>auth.settings</code>
       </h2>
-      <SimpleTable rows={settingsRows} />
+      <SimpleTable rows={createRows(auth.settings)} />
     </>
   );
 };
