@@ -555,8 +555,8 @@ f1dc48cb-57f7-400b-ac65-68d329be69f9	27579148-d477-446c-bba7-7252340c6c54
 --
 
 COPY public.user_entity (id, email, email_constraint, email_verified, enabled, federation_link, first_name, last_name, realm_id, username, created_timestamp, service_account_client_link, not_before) FROM stdin;
-2d02276f-b6a4-4c43-90f6-827765a1d799	betty@example.com	betty@example.com	f	t	\N	Betty	Jane	04d6226e-e85e-4251-b423-a3525954ba75	betty@example.com	1713244999966	\N	0
 f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	Bruce	Wayne	04d6226e-e85e-4251-b423-a3525954ba75	admin@example.com	1713242628202	\N	0
+2d02276f-b6a4-4c43-90f6-827765a1d799	betty@example.com	betty@example.com	t	t	\N	Betty	Jane	04d6226e-e85e-4251-b423-a3525954ba75	betty@example.com	1713244999966	\N	0
 \.
 
 
