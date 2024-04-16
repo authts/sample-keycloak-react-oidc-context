@@ -53,7 +53,7 @@ COPY public.associated_policy (policy_id, associated_policy_id) FROM stdin;
 --
 
 COPY public.realm (id, access_code_lifespan, user_action_lifespan, access_token_lifespan, account_theme, admin_theme, email_theme, enabled, events_enabled, events_expiration, login_theme, name, not_before, password_policy, registration_allowed, remember_me, reset_password_allowed, social, ssl_required, sso_idle_timeout, sso_max_lifespan, update_profile_on_soc_login, verify_email, master_admin_client, login_lifespan, internationalization_enabled, default_locale, reg_email_as_username, admin_events_enabled, admin_events_details_enabled, edit_username_allowed, otp_policy_counter, otp_policy_window, otp_policy_period, otp_policy_digits, otp_policy_alg, otp_policy_type, browser_flow, registration_flow, direct_grant_flow, reset_credentials_flow, client_auth_flow, offline_session_idle_timeout, revoke_refresh_token, access_token_life_implicit, login_with_email_allowed, duplicate_emails_allowed, docker_auth_flow, refresh_token_max_reuse, allow_user_managed_access, sso_max_lifespan_remember_me, sso_idle_timeout_remember_me, default_role) FROM stdin;
-04d6226e-e85e-4251-b423-a3525954ba75	60	300	300	\N	\N	\N	t	f	0	\N	master	0	\N	t	f	f	f	EXTERNAL	1800	36000	f	f	fbf6e996-19ff-4bfc-9bd3-f61423721b61	1800	f	\N	t	f	f	f	0	1	30	6	HmacSHA1	totp	5bad2fea-ebf3-442a-a3e6-5d979e766ca7	8fc5a03d-e2c9-496f-83ce-f0e542428c06	53391326-0bd9-4b34-890e-1b04a43670b2	564cbf4a-c435-4cf7-92e2-372f26c4c688	6fdbaab9-93db-499d-b913-f85562455e60	2592000	f	900	t	f	7572e7dc-6439-46ef-b1ad-e6189376a17c	0	f	0	0	f1dc48cb-57f7-400b-ac65-68d329be69f9
+04d6226e-e85e-4251-b423-a3525954ba75	60	300	300	\N	\N	\N	t	f	0	\N	master	0	\N	t	t	t	f	EXTERNAL	1800	36000	f	t	fbf6e996-19ff-4bfc-9bd3-f61423721b61	1800	f	\N	t	f	f	f	0	1	30	6	HmacSHA1	totp	5bad2fea-ebf3-442a-a3e6-5d979e766ca7	8fc5a03d-e2c9-496f-83ce-f0e542428c06	53391326-0bd9-4b34-890e-1b04a43670b2	564cbf4a-c435-4cf7-92e2-372f26c4c688	6fdbaab9-93db-499d-b913-f85562455e60	2592000	f	900	t	f	7572e7dc-6439-46ef-b1ad-e6189376a17c	0	f	0	0	f1dc48cb-57f7-400b-ac65-68d329be69f9
 \.
 
 
@@ -556,7 +556,7 @@ f1dc48cb-57f7-400b-ac65-68d329be69f9	27579148-d477-446c-bba7-7252340c6c54
 
 COPY public.user_entity (id, email, email_constraint, email_verified, enabled, federation_link, first_name, last_name, realm_id, username, created_timestamp, service_account_client_link, not_before) FROM stdin;
 2d02276f-b6a4-4c43-90f6-827765a1d799	betty@example.com	betty@example.com	f	t	\N	Betty	Jane	04d6226e-e85e-4251-b423-a3525954ba75	betty@example.com	1713244999966	\N	0
-f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	f	t	\N	Bruce	Wayne	04d6226e-e85e-4251-b423-a3525954ba75	admin@example.com	1713242628202	\N	0
+f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	Bruce	Wayne	04d6226e-e85e-4251-b423-a3525954ba75	admin@example.com	1713242628202	\N	0
 \.
 
 

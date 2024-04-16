@@ -49,7 +49,7 @@ In another terminal, run the React app.
 
 - React app
     - **Link**: http://localhost:5173
-    - **Credentials**: `betty@example.com` / `rQ^pa7C3Qh*qNP`
+    - **Credentials**: `admin@example.com` / `admin`
 - Mailhog UI
     - **Link**: http://localhost:8025
 - Keycloak account console
@@ -59,8 +59,7 @@ In another terminal, run the React app.
     - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
 - Keycloak admin console
     - **Link**: http://localhost:8080/admin/master/console/
-    - **Credentials**: `admin@example.com` / `admin`
-    - **Notes**: Open this in an _incognito_ window
+    - **Credentials**: _same as react app_
 
 ## Seeded data
 
@@ -71,7 +70,6 @@ The `db/init` folder contains SQL files which are mounted into the Postgres cont
     - Set access token lifespan to 5 mins
     - Setup email connection via Mailhog
 - Create a public client for the React app
-- Create an example user
 
 ## Disclaimers
 
