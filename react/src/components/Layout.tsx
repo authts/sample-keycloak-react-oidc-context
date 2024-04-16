@@ -9,7 +9,7 @@ const Container = styled.div`
   margin-right: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  max-width: 800px;
+  max-width: 1200px;
 `;
 
 const NavBar = styled.nav`
@@ -33,6 +33,10 @@ const NavButtons = styled.div`
 
 const NavButton = styled.button`
   padding: 0.5rem 1rem;
+`;
+
+const Main = styled.main`
+  margin-bottom: 2rem;
 `;
 
 type NavItemType = {
@@ -83,7 +87,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         </NavButtons>
       </NavBar>
 
-      <main>{children}</main>
+      <Main>{children}</Main>
     </Container>
   );
 };
