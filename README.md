@@ -59,7 +59,7 @@ The Keycloak server and Postgres database will run in Docker Compose. The React 
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup:
+The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. They include:
 
 - Minimal customization of the `master` realm
 - A public client for the React app named `react`
