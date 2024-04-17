@@ -1,8 +1,10 @@
-import { UserConfigExport, defineConfig } from 'vite';
+import { UserConfigExport, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd());
+
   const commonConfig: UserConfigExport = {
     plugins: [react()],
     base: '/'
@@ -15,9 +17,8 @@ export default defineConfig(({ command }) => {
         open: true,
         strictPort: true,
         proxy: {
-          // TODO read target from env var
           '/api': {
-            target: 'http://localhost:5174',
+            target: env.VITE_API_BASE_URL,
             changeOrigin: true,
             rewrite: (path) => {
               return path.replace(/^\/api/, '');
