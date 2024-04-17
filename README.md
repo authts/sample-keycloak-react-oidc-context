@@ -81,7 +81,7 @@ The `db/init` folder contains SQL files which are mounted into the Postgres cont
 
 ### Clients
 
-Create a client with:
+Create a public client with:
 
 - **General settings** > set **Client ID** to `react`
 - **Access settings** > set **Valid redirect URIs** to `http://localhost:5173/*`
