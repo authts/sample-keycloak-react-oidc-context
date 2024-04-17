@@ -12,7 +12,7 @@ So, thought it'd be cool to make a little project that glues these tools togethe
 
 ## Setup
 
-In one terminal, run the Postgres database, Keycloak server, and Mailhog via Docker Compose.
+In one terminal, run the Postgres database, Keycloak server, Mailhog server, and Express API via Docker Compose.
 
 In another terminal, run the React app.
 
@@ -63,7 +63,9 @@ In another terminal, run the React app.
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It customizes of the `master` realm:
+The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It customizes the `master` realm:
+
+<details><summary>Details</summary>
 
 ### Clients
 
@@ -96,6 +98,8 @@ Create a client with:
 - **Realm settings** > **Email** > set **From** to `no-reply@example.com`
 - **Realm settings** > **Email** > set **Host** to `mailhog`
 - **Realm settings** > **Email** > set **Port** to `1025`
+
+</details>
 
 ## Disclaimers
 
