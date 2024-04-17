@@ -1,13 +1,14 @@
 import express from 'express';
 import { verifyJwtMiddleware } from './jwtUtils.js';
+import { AugmentedRequest } from './types.js';
 
 const app = express();
 const port = Number(process.env.API_PORT!);
 
 app.use(verifyJwtMiddleware);
 
-app.get('/', (_req, res) => {
-  res.json({ msg: 'hello' });
+app.get('/', (req, res) => {
+  res.json({ payload: (req as AugmentedRequest).payload });
 });
 
 app.listen(port, () => {

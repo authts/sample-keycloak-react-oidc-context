@@ -1,5 +1,3 @@
-import { titleCase } from 'scule';
-
 interface AlertProps {
   variant: 'success' | 'error';
   children: React.ReactNode;
@@ -21,11 +19,7 @@ const Alert: React.FC<AlertProps> = (props) => {
     color = 'rgb(95, 33, 32)';
   }
 
-  return (
-    <div style={{ backgroundColor, color, padding: '1rem' }}>
-      <strong>{titleCase(variant)}</strong>: {children}
-    </div>
-  );
+  return <div style={{ backgroundColor, color, padding: '1rem', whiteSpace: 'pre-wrap' }}>{children}</div>;
 };
 
 export default Alert;

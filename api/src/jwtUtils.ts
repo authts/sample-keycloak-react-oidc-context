@@ -1,9 +1,6 @@
 import * as jose from 'jose';
 import { NextFunction, Request, Response } from 'express';
-
-interface AugmentedRequest extends Request {
-  payload: jose.JWTPayload;
-}
+import { AugmentedRequest } from './types.js';
 
 const jsonWebKeySetUrl = process.env.API_JSON_WEB_KEY_SET_URL!;
 
