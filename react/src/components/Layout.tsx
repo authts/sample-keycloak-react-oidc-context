@@ -32,7 +32,7 @@ const NavButtons = styled.div`
 `;
 
 const NavButton = styled.button`
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
 `;
 
 const Main = styled.main`
