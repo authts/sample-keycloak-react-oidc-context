@@ -8,7 +8,7 @@ const WithoutToken: React.FC = () => {
     retry: false,
     queryFn: async () => {
       // simulate slow network
-      await sleep(1_000);
+      await sleep(500);
 
       const url = '/api/payload';
       const response = await fetch(url);
