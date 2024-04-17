@@ -77,8 +77,6 @@ Here are some scenarios you can play with:
 
 The `db/init` folder contains SQL files which are copied into the Postgres image and run on container startup. These SQL files do some customization of the `master` realm:
 
-<details><summary>Seeded data</summary>
-
 ### Clients
 
 Create a public client with:
@@ -110,8 +108,6 @@ Create a public client with:
 - **Realm settings** > **Email** > set **From** to `no-reply@example.com`
 - **Realm settings** > **Email** > set **Host** to `mailhog`
 - **Realm settings** > **Email** > set **Port** to `1025`
-
-</details>
 
 ## Disclaimers
 

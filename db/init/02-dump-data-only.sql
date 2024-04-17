@@ -565,8 +565,8 @@ f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	
 --
 
 COPY public.credential (id, salt, type, user_id, created_date, user_label, secret_data, credential_data, priority) FROM stdin;
-79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713242628440	\N	{"value":"ldeeaAvLYPMX4dQk2Twrw+FS5Ghf5f/IcjzVgTvh/1lcOCsSOS4VkkChzZzWPJimf7wk5snf0nfu3dhNxlfiJQ==","salt":"vMQki6Cwjd7roqtkgJoZCQ==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
 c8932fd5-dabb-4b15-ad85-c31f8559da20	\N	password	2d02276f-b6a4-4c43-90f6-827765a1d799	1713245000180	\N	{"value":"uqvXbTlWHK37Dy+EPPeREuTgvaN2rPcqobewCcuXnQkxSm2X/ubucDxHkuPiJMzpXYhQ2gpedc1uQGg6o2p8uw==","salt":"GTYxDyifTCaMHCytYR3yQw==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
+79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713381368523	My password	{"value":"pr6babL4/sv2AZmgOEHYgo+GdM/sNVTRU6FxP3bOJRzeFqm6VJIJ5e9IxQ8aRim/ZeROevWCZnbUXTnbfV+D6A==","salt":"OvQVva1Fgp5i8CoSJFBUeQ==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
 \.
 
 
@@ -873,6 +873,7 @@ COPY public.idp_mapper_config (idp_mapper_id, value, name) FROM stdin;
 
 COPY public.migration_model (id, version, update_time) FROM stdin;
 rg5y4	24.0.2	1713242627
+l88vu	24.0.3	1713381283
 \.
 
 
@@ -1294,6 +1295,7 @@ cacb4173-e93a-4473-a526-907242a96142	update_user_locale	Update User Locale	04d62
 d7fa1a34-eb1d-4321-a7e3-b2a4724403f2	webauthn-register	Webauthn Register	04d6226e-e85e-4251-b423-a3525954ba75	t	f	webauthn-register	70
 7e4375db-175a-4955-adcd-f8beeff06ad2	webauthn-register-passwordless	Webauthn Register Passwordless	04d6226e-e85e-4251-b423-a3525954ba75	t	f	webauthn-register-passwordless	80
 8700de2d-8dd2-4020-a7df-d0515e7a8c6b	VERIFY_PROFILE	Verify Profile	04d6226e-e85e-4251-b423-a3525954ba75	t	f	VERIFY_PROFILE	90
+d12a1786-f554-4845-bbfb-5bf0a959a1fd	delete_credential	Delete Credential	04d6226e-e85e-4251-b423-a3525954ba75	t	f	delete_credential	100
 \.
 
 
