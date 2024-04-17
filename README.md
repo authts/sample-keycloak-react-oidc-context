@@ -99,5 +99,5 @@ Create a client with:
 
 ## Disclaimers
 
-- For convenience, the admin user is also used for regular app logins. In the real world, the admin account would be locked down, and you'd have regular, non-admin users
-- The `Dockerfile` for each service is optimized for local development, **not** production
+- The `Dockerfile` for each service is optimized for local development mode. **DO NOT** use this configuration in production
+- For convenience, the admin user is also used for regular app logins. In production, the admin account would be locked down, and you'd have regular, _non-admin_ users
