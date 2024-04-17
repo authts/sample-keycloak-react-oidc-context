@@ -61,9 +61,9 @@ const Layout: React.FC<LayoutProps> = (props) => {
       }
     },
     {
-      text: 'About',
+      text: 'Playground',
       action: () => {
-        navigate(AppRoutes.About);
+        navigate(AppRoutes.Playground);
       }
     },
     {

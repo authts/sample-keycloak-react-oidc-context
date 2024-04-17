@@ -13,7 +13,17 @@ export default defineConfig(({ command }) => {
       ...commonConfig,
       server: {
         open: true,
-        strictPort: true
+        strictPort: true,
+        proxy: {
+          // TODO read target from env var
+          '/api': {
+            target: 'http://localhost:5174',
+            changeOrigin: true,
+            rewrite: (path) => {
+              return path.replace(/^\/api/, '');
+            }
+          }
+        }
       }
     };
   }
