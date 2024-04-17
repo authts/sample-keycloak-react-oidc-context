@@ -4,6 +4,7 @@ import { AugmentedRequest } from './types.js';
 
 const jsonWebKeySetUrl = process.env.API_JSON_WEB_KEY_SET_URL!;
 
+// This function is cached so that the json web key set is not looked up on every request
 let getJsonWebKeySet: jose.JWTVerifyGetKey | null = null;
 
 const parseBearerToken = (req: Request): string | null => {
