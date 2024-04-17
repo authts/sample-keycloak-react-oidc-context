@@ -6,6 +6,8 @@ const Playground: React.FC = () => {
     <>
       <h1>Playground</h1>
 
+      <p>What happens when making an API request without/with a token?</p>
+
       <h2>Without token</h2>
       <WithoutToken />
 

@@ -32,6 +32,7 @@ const NavButtons = styled.div`
 `;
 
 const NavButton = styled.button`
+  border-radius: 0.25rem;
   padding: 0.375rem 0.75rem;
 `;
 
