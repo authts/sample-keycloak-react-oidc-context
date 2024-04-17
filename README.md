@@ -61,11 +61,23 @@ In another terminal, run the React app.
     - **Link**: http://localhost:8080/admin/master/console/
     - **Credentials**: _same as react app_
 
+## Scenarios
+
+Here are some scenarios you can play with:
+
+<details><summary>Scenarios</summary>
+
+### Cross-tab login/logout
+### API requests with and without access token
+### Register new user
+
+</details>
+
 ## Seeded data
 
 The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It customizes the `master` realm:
 
-<details><summary>Seeded data details</summary>
+<details><summary>Seeded data</summary>
 
 ### Clients
 
