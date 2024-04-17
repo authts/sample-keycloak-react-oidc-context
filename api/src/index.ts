@@ -12,6 +12,14 @@ app.get('/payload', (req, res) => {
   res.json(data);
 });
 
-app.listen(port, () => {
-  console.log(`api listening on port ${port}`);
+const server = app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
+
+const signals = ['SIGINT', 'SIGTERM'];
+
+for (const signal of signals) {
+  process.on(signal, () => {
+    server.close();
+  });
+}

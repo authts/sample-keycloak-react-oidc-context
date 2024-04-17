@@ -3,7 +3,6 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "preview": "node dist/index.js",
     "format": "prettier --cache --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,css,svg,json,html,yml}\"",
     "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0"
   },
