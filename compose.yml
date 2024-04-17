@@ -29,3 +29,13 @@ services:
       - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
     env_file:
       - .env
+
+  api:
+    build:
+      context: ./api
+    ports:
+      - ${API_PORT}:${API_PORT}
+    env_file:
+      - .env
+    volumes:
+      - ./api/src:/app/src
