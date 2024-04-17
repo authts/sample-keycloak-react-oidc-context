@@ -25,6 +25,9 @@ const Home: React.FC = () => {
   return (
     <>
       <h1>Home</h1>
+      <p>
+        Inspecting the result of the <code>useAuth()</code> hook.
+      </p>
 
       <h2>
         <code>auth.user?.profile</code>
