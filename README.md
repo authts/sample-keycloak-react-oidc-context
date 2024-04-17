@@ -47,20 +47,29 @@ In another terminal, run the React app.
 
 ## Links
 
-- React app
-    - **Link**: http://localhost:5173
-    - Username: `admin@example.com`
-    - Password: `juggle-prance-shallot-wireless-outlet`
-- Keycloak account console
-    - **Link**: http://localhost:8080/realms/master/account/
-    - **Credentials**: _same as react app_
-- Keycloak admin console
-    - **Link**: http://localhost:8080/admin/master/console/
-    - **Credentials**: _same as react app_
-- OpenID Endpoint Configuration
-    - **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
-- Mailhog UI
-    - **Link**: http://localhost:8025
+### React app
+
+- **Link**: http://localhost:5173
+- **Username**: `admin@example.com`
+- **Password**: `juggle-prance-shallot-wireless-outlet`
+
+### Keycloak account console
+
+- **Link**: http://localhost:8080/realms/master/account/
+- **Credentials**: _same as React app_
+
+### Keycloak admin console
+
+- **Link**: http://localhost:8080/admin/master/console/
+- **Credentials**: _same as React app_
+
+### OpenID Endpoint Configuration
+
+- **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
+
+### Mailhog UI
+
+- **Link**: http://localhost:8025
 
 ## Scenarios
 
