@@ -1,4 +1,4 @@
-ARG KEYCLOAK_IMAGE=quay.io/keycloak/keycloak:24.0.2
+ARG KEYCLOAK_IMAGE=quay.io/keycloak/keycloak:24.0.3
 
 FROM ${KEYCLOAK_IMAGE} as builder
 ENV KC_DB=postgres
