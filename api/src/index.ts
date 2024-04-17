@@ -7,8 +7,9 @@ const port = Number(process.env.API_PORT!);
 
 app.use(verifyJwtMiddleware);
 
-app.get('/', (req, res) => {
-  res.json({ payload: (req as AugmentedRequest).payload });
+app.get('/payload', (req, res) => {
+  const data = (req as AugmentedRequest).payload;
+  res.json(data);
 });
 
 app.listen(port, () => {

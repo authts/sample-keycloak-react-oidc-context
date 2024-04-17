@@ -1,12 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import Alert from '../../Alert';
+import { sleep } from '../../../utils';
 
 const WithoutToken: React.FC = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ['WithoutToken'],
     retry: false,
     queryFn: async () => {
-      const response = await fetch('/api');
+      // simulate slow network
+      await sleep(1_000);
+
+      const url = '/api/payload';
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error(`Unexpected response status: ${response.status}`);

@@ -37,5 +37,3 @@ services:
       - ${API_PORT}:${API_PORT}
     env_file:
       - .env
-    volumes:
-      - ./api/src:/app/src

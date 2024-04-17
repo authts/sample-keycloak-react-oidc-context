@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Alert from '../../Alert';
 import { useAuth } from 'react-oidc-context';
+import { sleep } from '../../../utils';
 
 const WithToken: React.FC = () => {
   const auth = useAuth();
@@ -9,7 +10,11 @@ const WithToken: React.FC = () => {
     queryKey: ['WithToken'],
     retry: false,
     queryFn: async () => {
-      const response = await fetch('/api', {
+      // simulate slow network
+      await sleep(1_000);
+
+      const url = '/api/payload';
+      const response = await fetch(url, {
         headers: {
           authorization: `Bearer ${auth.user?.access_token}`
         }
