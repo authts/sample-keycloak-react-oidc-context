@@ -75,7 +75,7 @@ Here are some scenarios you can play with:
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are mounted into the Postgres container and run on startup. It customizes the `master` realm:
+The `db/init` folder contains SQL files which are copied into the Postgres image and run on container startup. These SQL files do some customization of the `master` realm:
 
 <details><summary>Seeded data</summary>
 
