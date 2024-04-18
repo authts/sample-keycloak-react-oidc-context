@@ -8,7 +8,7 @@ Minimal, reproducible example for Keycloak + React.
 
 I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context](https://github.com/authts/react-oidc-context) repo on how to use it with Keycloak.
 
-So, thought it'd be cool to make a little project that glues these tools together, in hopes that others will play with and learn from it.
+So, I thought it'd be cool to make a little project that glues these tools together, in hopes that others may play with it and get ideas for their own implementations.
 
 ## Setup
 
@@ -75,13 +75,16 @@ In another terminal, run the React app.
 
 Here are some scenarios you can play with:
 
-<details><summary>Scenarios</summary>
-
 ### Cross-tab login/logout
+
+1. Login to the React app in one browser tab
+1. Copy-paste the link into another browser tab
+1. Notice how you're automatically logged in
+1. Logout in one of the browser tabs
+1. Notice how you're automatically logged out of both browser tabs
+
 ### API requests with and without access token
 ### Register new user
-
-</details>
 
 ## Seeded data
 
