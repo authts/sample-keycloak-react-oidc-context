@@ -92,6 +92,15 @@ Here are some scenarios you can play with:
 
 ### Register new user
 
+1. Go to the login page
+1. Click **Register**
+1. Fill out the fields for a fake user
+1. Click **Register**
+1. Open the Mailhog UI
+1. Click the email with subject **Verify email**
+1. Click the **Link to e-mail address verification** link
+1. Notice how you're logged into the React app with your newly created user
+
 ## Seeded data
 
 The `db/init` folder contains SQL files which are copied into the Postgres image and run on container startup. These SQL files do some customization of the `master` realm:
