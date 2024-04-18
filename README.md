@@ -99,7 +99,7 @@ Here are some scenarios you can play with:
 1. Open the Mailhog UI
 1. Click the email with subject **Verify email**
 1. Click the **Link to e-mail address verification** link
-1. Notice how you're logged into the React app with your newly created user
+1. Notice how you're automatically logged into the React app with your newly created user
 
 ## Seeded data
 
