@@ -77,13 +77,19 @@ Here are some scenarios you can play with:
 
 ### Cross-tab login/logout
 
-1. Login to the React app in one browser tab
+1. Login to the React app
 1. Copy-paste the link into another browser tab
 1. Notice how you're automatically logged in
 1. Logout in one of the browser tabs
 1. Notice how you're automatically logged out of both browser tabs
 
-### API requests with and without access token
+### API requests with and without token
+
+1. Login to the React app
+1. Open your browser **DevTools**, go to the **Network** tab, and filter requests by **Fetch/XHR**
+1. Go to the **Playground** page in the React app
+1. Notice how the request **without** a Bearer token gets a 401, but the request **with** a Bearer token gets a 200
+
 ### Register new user
 
 ## Seeded data
