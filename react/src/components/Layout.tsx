@@ -42,6 +42,8 @@ const Main = styled.main`
 
 type NavItemType = {
   text: string;
+  /** Setting this flag to `true` means that only auth'd users should see the nav item */
+  protected: boolean;
   action: () => void;
 };
 
@@ -57,23 +59,28 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const navItems: NavItemType[] = [
     {
       text: 'Home',
+      protected: true,
       action: () => {
         navigate(AppRoutes.Home);
       }
     },
     {
       text: 'Playground',
+      protected: true,
       action: () => {
         navigate(AppRoutes.Playground);
       }
     },
     {
       text: 'Logout',
+      protected: false,
       action: () => {
         void auth.signoutRedirect();
       }
     }
-  ];
+  ].filter((item) => {
+    return auth.isAuthenticated || !item.protected;
+  });
 
   return (
     <Container>
