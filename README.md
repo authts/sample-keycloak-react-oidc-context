@@ -4,6 +4,35 @@
 
 Minimal, reproducible example for Keycloak + React.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Why](#why)
+- [Setup](#setup)
+  * [Docker Compose](#docker-compose)
+  * [React app](#react-app)
+- [Links](#links)
+  * [React app](#react-app-1)
+  * [Keycloak account console](#keycloak-account-console)
+  * [Keycloak admin console](#keycloak-admin-console)
+  * [Mailhog UI](#mailhog-ui)
+- [Scenarios](#scenarios)
+  * [Cross-tab login/logout](#cross-tab-loginlogout)
+  * [API requests with and without token](#api-requests-with-and-without-token)
+  * [Register new user](#register-new-user)
+- [High-level summary of common flows](#high-level-summary-of-common-flows)
+  * [Logging into the React app](#logging-into-the-react-app)
+  * [Making an API request](#making-an-api-request)
+- [Seeded data](#seeded-data)
+  * [Clients](#clients)
+  * [Login](#login)
+  * [Tokens](#tokens)
+  * [Email](#email)
+- [Disclaimers](#disclaimers)
+
+<!-- tocstop -->
+
 ## Why
 
 I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context](https://github.com/authts/react-oidc-context) repo on how to use it with Keycloak.

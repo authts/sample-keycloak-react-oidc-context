@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "toc": "markdown-toc -i README.md"
+  },
+  "dependencies": {
+    "markdown-toc": "^1.2.0"
+  }
+}
