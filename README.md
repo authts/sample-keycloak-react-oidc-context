@@ -101,6 +101,8 @@ Here are some scenarios you can play with:
 
 ### Logging into the React app
 
+Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context) and [oidc-client-ts](https://github.com/authts/oidc-client-ts) libraries do the heavy lifting for you.
+
 1. Go to the React app
     - **Request URL**: GET http://localhost:5173/
 1. The OpenID config is fetched
