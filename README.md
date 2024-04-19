@@ -28,13 +28,14 @@ Minimal, reproducible example for Keycloak + React.
   * [Login](#login)
   * [Tokens](#tokens)
   * [Email](#email)
+- [Sharing](#sharing)
 - [Disclaimers](#disclaimers)
 
 <!-- tocstop -->
 
 ## Why
 
-I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context](https://github.com/authts/react-oidc-context) repo on how to use it with Keycloak.
+I often see questions in the [Keycloak forums](https://keycloak.discourse.group) on how to use it with React. On the other hand, I often see questions in the [react-oidc-context repo](https://github.com/authts/react-oidc-context) on how to use it with Keycloak.
 
 So, I thought it'd be cool to make a little project that glues these tools together, in hopes that others may play with it and get ideas for their own implementations.
 
@@ -293,6 +294,13 @@ Create a public client with:
 - **Realm settings** > **Email** > set **From** to `no-reply@example.com`
 - **Realm settings** > **Email** > set **Host** to `mailhog`
 - **Realm settings** > **Email** > set **Port** to `1025`
+
+## Sharing
+
+Places where this project has been shared.
+
+- The [Keycloak forums](https://keycloak.discourse.group/t/minimal-reproducible-example-for-keycloak-react/25664)
+- The [react-oidc-context repo](https://github.com/authts/react-oidc-context/issues/1208)
 
 ## Disclaimers
 
