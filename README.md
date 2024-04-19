@@ -103,6 +103,8 @@ Here are some scenarios you can play with:
 
 Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context) and [oidc-client-ts](https://github.com/authts/oidc-client-ts) libraries do the heavy lifting for us.
 
+This flow is known as [Authorization Code Grant with Proof Key for Code Exchange (PKCE)](https://github.com/authts/oidc-client-ts/blob/main/docs/protocols/authorization-code-grant-with-pkce.md).
+
 1. Go to the React app
     - **Request URL**: GET http://localhost:5173/
 1. The OpenID config is fetched
