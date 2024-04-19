@@ -80,9 +80,9 @@ In another terminal, run the React app.
 
 ## Config
 
-The Docker Compose config should work as-is. If you need to customze it, like changing what port a service runs on, then edit file `.env`.
+The Docker Compose config should work as-is. If you need to customize it, like changing what port a service runs on, then edit file `.env`.
 
-The React config should work as-is as well. If you need to customze it, then edit file `react/.env`.
+The React config should work as-is as well. If you need to customize it, then edit file `react/.env`.
 
 ## Links
 
@@ -258,7 +258,7 @@ You can see this happen for yourself by doing: Open your browser **DevTools**, g
 
 ## Seeded data
 
-The `db/init` folder contains SQL which is copied into the Postgres image and run on container startup.
+The `db/init` folder contains SQL which is copied into the Postgres image and runs on container startup.
 
 I didn't write this SQL by hand. Instead, I customized the `master` realm a tad, then dumped the data. See script `task_dump_kc_data.sh`
 
