@@ -217,7 +217,9 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
 
 ## Seeded data
 
-The `db/init` folder contains SQL files which are copied into the Postgres image and run on container startup. These SQL files do some customization of the `master` realm:
+The `db/init` folder contains SQL which is copied into the Postgres image and run on container startup.
+
+I didn't write this SQL by hand. Instead, I customized the `master` realm a tad, then dumped the data. See script `task_dump_kc_data.sh`
 
 ### Clients
 
