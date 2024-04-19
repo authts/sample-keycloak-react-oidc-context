@@ -183,7 +183,7 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
 1. The server requests the JSON web key set
     - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/certs
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
-1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the JWT (JSON web token)
+1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the token
 1. The server responds to the React app
 
 ## Seeded data
