@@ -80,9 +80,9 @@ In another terminal, run the React app.
 
 ## Config
 
-The Docker Compose config should work as-is. If you need to customize it, like changing what port a service runs on, then edit file `.env`.
+The Docker Compose config should work as-is. If you need to customize it, like changing what port a service runs on, then edit file `.env`
 
-The React config should work as-is as well. If you need to customize it, then edit file `react/.env`.
+The React config should work as-is as well. If you need to customize it, then edit file `react/.env`
 
 ## Links
 
