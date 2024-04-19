@@ -51,7 +51,7 @@ In another terminal, run the React app.
 1. Install [Docker](https://docs.docker.com/get-docker/)
 1. Copy file `.env.sample` to file `.env`
 
-        cp -v .env.sample .env
+        cp .env.sample .env
 
 1. Build images
 
@@ -89,8 +89,13 @@ The React config should work as-is as well. If you need to customze it, then edi
 ### React app
 
 - **Link**: http://localhost:5173
-- **Username**: `admin@example.com`
-- **Password**: `juggle-prance-shallot-wireless-outlet`
+- **Username**:
+
+      admin@example.com
+
+- **Password**:
+
+      juggle-prance-shallot-wireless-outlet
 
 ### Keycloak account console
 
