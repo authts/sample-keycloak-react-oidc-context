@@ -152,6 +152,8 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
 
 You can see this happen for yourself by doing: Open your browser **DevTools**, go to the **Network** tab, check **Preserve log**, and filter requests by **Doc** and **Fetch/XHR**.
 
+I've copied the request _query params_ and _form data_ directly from DevTools for education purposes. Keep in mind that these values will likely be different for you.
+
 1. Go to the React app
     - **Request URL**:
 
