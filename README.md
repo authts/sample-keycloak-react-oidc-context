@@ -63,13 +63,78 @@ In another terminal, run the React app.
 - **Link**: http://localhost:8080/admin/master/console/
 - **Credentials**: _same as React app_
 
-### OpenID Endpoint Configuration
-
-- **Link**: http://localhost:8080/realms/master/.well-known/openid-configuration
-
 ### Mailhog UI
 
 - **Link**: http://localhost:8025
+
+## High-level flows
+
+### Logging into the React app
+
+1. Go to the React app
+    - **Request URL**: http://localhost:5173/
+1. The OpenID config is fetched
+    - **Request URL**: http://localhost:8080/realms/master/.well-known/openid-configuration
+    - **Response body**: _Omitted for brevity. Go to the request URL to see it_
+1. You're not logged in, so you're redirected to the Keycloak login page
+    - **Request URL**: http://localhost:8080/realms/master/protocol/openid-connect/auth
+    - **Request query params**:
+
+          client_id: react
+          redirect_uri: http://localhost:5173/
+          response_type: code
+          scope: openid
+          state: 391fb773c982414baed2250583113efc
+          code_challenge: K-Hp16LIAH8r6QSjOmfYh7zJtySFjWFRsVN-4s72st0
+          code_challenge_method: S256
+
+1. Submit your username and password
+    - **Request URL**: http://localhost:8080/realms/master/login-actions/authenticate
+    - **Request query params**:
+
+          session_code: NSBRN5i4WCHlUNM-Fr_7sVGv_luCqlcuj-dYvRgPGbg
+          execution: 0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8
+          client_id: react
+          tab_id: 1x0hcfo9RVk
+
+    - **Request form data**:
+
+          username: admin@example.com
+          password: juggle-prance-shallot-wireless-outlet
+          credentialId:
+
+1. On success, you're redirected to the React app
+    - **Request URL**: http://localhost:5173/
+    - **Request query params**:
+
+          state: 391fb773c982414baed2250583113efc
+          session_state: 683043bb-2209-47ff-b0a5-2c0197ab2507
+          iss: http://localhost:8080/realms/master
+          code: 44891f5f-be56-4fc4-b970-8f1dd0d88fbe.683043bb-2209-47ff-b0a5-2c0197ab2507.acc4f3dc-25c9-4716-bfa5-cde9f19c8c32
+
+1. The token is fetched
+    - **Request URL**: http://localhost:8080/realms/master/protocol/openid-connect/token
+    - **Request form data**:
+
+          grant_type: authorization_code
+          redirect_uri: http://localhost:5173/
+          code: 44891f5f-be56-4fc4-b970-8f1dd0d88fbe.683043bb-2209-47ff-b0a5-2c0197ab2507.acc4f3dc-25c9-4716-bfa5-cde9f19c8c32
+          code_verifier: d8df056c73d6437fa810e3a85f1784761ac3a8001b734dc593fef211ffdba501c0c82b6abeab4b989eb03fae34ad36c4
+          client_id: react
+
+    - **Response body**: _`access_token`, `refresh_token`, and `id_token` values truncated for brevity_
+
+          {
+              "access_token": "eyJ...",
+              "expires_in": 300,
+              "refresh_expires_in": 1800,
+              "refresh_token": "eyJ...",
+              "token_type": "Bearer",
+              "id_token": "eyJ...",
+              "not-before-policy": 0,
+              "session_state": "683043bb-2209-47ff-b0a5-2c0197ab2507",
+              "scope": "openid email profile"
+          }
 
 ## Scenarios
 
