@@ -237,7 +237,7 @@ You can see this happen for yourself by doing: Open your browser **DevTools**, g
 ### Making an API request
 
 1. Go to the React app, login, then click the **Playground** page
-1. An API request is made, which the Vite dev server proxies to the correct location on the server
+1. An API request is made, which the Vite dev server proxies to the correct location on the API server
     - **Request URL**:
 
           GET http://localhost:5173/api/payload
@@ -246,15 +246,15 @@ You can see this happen for yourself by doing: Open your browser **DevTools**, g
 
           authorization: Bearer eyJ...
 
-1. The server receives the request. The token is parsed from the `authorization` header
-1. The server requests the JSON web key set
+1. The API server receives the request. The token is parsed from the `authorization` header
+1. The API server requests the JSON web key set
     - **Request URL**:
 
           GET http://localhost:8080/realms/master/protocol/openid-connect/certs
 
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the token
-1. The server responds to the React app
+1. The API server responds to the React app
 
 ## Seeded data
 
