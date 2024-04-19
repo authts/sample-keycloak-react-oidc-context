@@ -40,6 +40,8 @@ I often see questions in the [Keycloak forums](https://keycloak.discourse.group)
 
 So, I thought it'd be cool to make a little project that glues these tools together, in hopes that others may play with it and get ideas for their own implementations.
 
+> The noblest pleasure is the joy of understanding. - Leonardo da Vinci
+
 ## Setup
 
 In one terminal, run the Postgres database, Keycloak server, Mailhog server, and Express API via Docker Compose.
