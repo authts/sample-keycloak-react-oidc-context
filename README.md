@@ -97,17 +97,17 @@ Here are some scenarios you can play with:
 1. Click the **Link to e-mail address verification** link
 1. Notice how you're automatically logged into the React app with your newly created user
 
-## High-level flows
+## High-level summary of common flows
 
 ### Logging into the React app
 
 1. Go to the React app
-    - **Request URL**: http://localhost:5173/
+    - **Request URL**: GET http://localhost:5173/
 1. The OpenID config is fetched
-    - **Request URL**: http://localhost:8080/realms/master/.well-known/openid-configuration
+    - **Request URL**: GET http://localhost:8080/realms/master/.well-known/openid-configuration
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. You're not logged in, so you're redirected to the Keycloak login page
-    - **Request URL**: http://localhost:8080/realms/master/protocol/openid-connect/auth
+    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/auth
     - **Request query params**:
 
           client_id: react
@@ -119,7 +119,7 @@ Here are some scenarios you can play with:
           code_challenge_method: S256
 
 1. Submit your username and password
-    - **Request URL**: http://localhost:8080/realms/master/login-actions/authenticate
+    - **Request URL**: POST http://localhost:8080/realms/master/login-actions/authenticate
     - **Request query params**:
 
           session_code: NSBRN5i4WCHlUNM-Fr_7sVGv_luCqlcuj-dYvRgPGbg
@@ -134,7 +134,7 @@ Here are some scenarios you can play with:
           credentialId:
 
 1. On success, you're redirected to the React app
-    - **Request URL**: http://localhost:5173/
+    - **Request URL**: GET http://localhost:5173/
     - **Request query params**:
 
           state: 391fb773c982414baed2250583113efc
@@ -143,7 +143,7 @@ Here are some scenarios you can play with:
           code: 44891f5f-be56-4fc4-b970-8f1dd0d88fbe.683043bb-2209-47ff-b0a5-2c0197ab2507.acc4f3dc-25c9-4716-bfa5-cde9f19c8c32
 
 1. The token is fetched
-    - **Request URL**: http://localhost:8080/realms/master/protocol/openid-connect/token
+    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/token
     - **Request form data**:
 
           grant_type: authorization_code
