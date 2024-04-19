@@ -6,26 +6,29 @@ import { sleep } from '../../../utils';
 const WithToken: React.FC = () => {
   const auth = useAuth();
 
+  const queryFn = async () => {
+    // simulate slow network
+    await sleep(500);
+
+    const url = '/api/payload';
+
+    const response = await fetch(url, {
+      headers: {
+        authorization: `Bearer ${auth.user?.access_token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Unexpected response status: ${response.status}`);
+    }
+
+    return await response.json();
+  };
+
   const { isPending, error, data } = useQuery({
     queryKey: ['WithToken'],
-    retry: false,
-    queryFn: async () => {
-      // simulate slow network
-      await sleep(500);
-
-      const url = '/api/payload';
-      const response = await fetch(url, {
-        headers: {
-          authorization: `Bearer ${auth.user?.access_token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error(`Unexpected response status: ${response.status}`);
-      }
-
-      return await response.json();
-    }
+    retry: false, // only setting to `false` for sake of demo, normally you'd want this `true`
+    queryFn
   });
 
   return error ? (

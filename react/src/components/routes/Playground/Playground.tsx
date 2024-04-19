@@ -8,10 +8,14 @@ const Playground: React.FC = () => {
 
       <p>What happens when making an API request without/with a token?</p>
 
-      <h2>Response without token</h2>
+      <h2>
+        <em>Without</em> token
+      </h2>
       <WithoutToken />
 
-      <h2>Response with token</h2>
+      <h2>
+        <em>With</em> token
+      </h2>
       <WithToken />
     </>
   );
