@@ -67,6 +67,36 @@ In another terminal, run the React app.
 
 - **Link**: http://localhost:8025
 
+## Scenarios
+
+Here are some scenarios you can play with:
+
+### Cross-tab login/logout
+
+1. Login to the React app
+1. Copy-paste the link into another browser tab
+1. Notice how you're automatically logged in
+1. Logout in one of the browser tabs
+1. Notice how you're automatically logged out of both browser tabs
+
+### API requests with and without token
+
+1. Login to the React app
+1. Open your browser **DevTools**, go to the **Network** tab, and filter requests by **Fetch/XHR**
+1. Go to the **Playground** page in the React app
+1. Notice how the request **without** a Bearer token gets a 401, but the request **with** a Bearer token gets a 200
+
+### Register new user
+
+1. Go to the login page
+1. Click **Register**
+1. Fill out the fields for a fake user
+1. Click **Register**
+1. Open the Mailhog UI
+1. Click the email with subject **Verify email**
+1. Click the **Link to e-mail address verification** link
+1. Notice how you're automatically logged into the React app with your newly created user
+
 ## High-level flows
 
 ### Logging into the React app
@@ -135,36 +165,6 @@ In another terminal, run the React app.
               "session_state": "683043bb-2209-47ff-b0a5-2c0197ab2507",
               "scope": "openid email profile"
           }
-
-## Scenarios
-
-Here are some scenarios you can play with:
-
-### Cross-tab login/logout
-
-1. Login to the React app
-1. Copy-paste the link into another browser tab
-1. Notice how you're automatically logged in
-1. Logout in one of the browser tabs
-1. Notice how you're automatically logged out of both browser tabs
-
-### API requests with and without token
-
-1. Login to the React app
-1. Open your browser **DevTools**, go to the **Network** tab, and filter requests by **Fetch/XHR**
-1. Go to the **Playground** page in the React app
-1. Notice how the request **without** a Bearer token gets a 401, but the request **with** a Bearer token gets a 200
-
-### Register new user
-
-1. Go to the login page
-1. Click **Register**
-1. Fill out the fields for a fake user
-1. Click **Register**
-1. Open the Mailhog UI
-1. Click the email with subject **Verify email**
-1. Click the **Link to e-mail address verification** link
-1. Notice how you're automatically logged into the React app with your newly created user
 
 ## Seeded data
 
