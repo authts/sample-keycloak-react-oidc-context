@@ -50,6 +50,9 @@ In another terminal, run the React app.
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
 1. Copy file `.env.sample` to file `.env`
+
+        cp -v .env.sample .env
+
 1. Build images
 
         docker compose build
@@ -73,7 +76,7 @@ In another terminal, run the React app.
 
         npm run dev
 
-1. Go to http://localhost:5173
+1. See [links](#links) for username and password
 
 ## Config
 
