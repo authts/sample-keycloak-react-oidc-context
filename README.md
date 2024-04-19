@@ -101,7 +101,7 @@ Here are some scenarios you can play with:
 
 ### Logging into the React app
 
-Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context) and [oidc-client-ts](https://github.com/authts/oidc-client-ts) libraries do the heavy lifting for you.
+Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context) and [oidc-client-ts](https://github.com/authts/oidc-client-ts) libraries do the heavy lifting for us.
 
 1. Go to the React app
     - **Request URL**: GET http://localhost:5173/
@@ -167,6 +167,22 @@ Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context
               "session_state": "683043bb-2209-47ff-b0a5-2c0197ab2507",
               "scope": "openid email profile"
           }
+
+### Making an API request
+
+1. Go to the React app, login, then click the **Playground** page
+1. An API request is made, which the Vite dev server proxies to the correct location on the server
+    - **Request URL**: GET http://localhost:5173/api/payload
+    - **Request headers**: _Only relevant headers are included. The access token value is truncated for brevity_
+
+          authorization: Bearer eyJ...
+
+1. The server receives the request. The token is parsed from the `authorization` header
+1. The server requests the JSON web key set
+    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/certs
+    - **Response body**: _Omitted for brevity. Go to the request URL to see it_
+1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the JWT (JSON web token)
+1. The server responds to the React app
 
 ## Seeded data
 
