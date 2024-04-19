@@ -12,6 +12,7 @@ Minimal, reproducible example for Keycloak + React.
 - [Setup](#setup)
   * [Docker Compose](#docker-compose)
   * [React app](#react-app)
+- [Config](#config)
 - [Links](#links)
   * [React app](#react-app-1)
   * [Keycloak account console](#keycloak-account-console)
@@ -73,6 +74,12 @@ In another terminal, run the React app.
         npm run dev
 
 1. Go to http://localhost:5173
+
+## Config
+
+The Docker Compose config should work as-is. If you need to customze it, like changing what port a service runs on, then edit file `.env`.
+
+The React config should work as-is as well. If you need to customze it, then edit file `react/.env`.
 
 ## Links
 
