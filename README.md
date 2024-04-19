@@ -1,7 +1,5 @@
 # mre-keycloak-react
 
-**NOTE: This project is under construction.**
-
 Minimal, reproducible example for Keycloak + React.
 
 ## Table of contents
