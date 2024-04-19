@@ -137,8 +137,8 @@ Here are some scenarios you can play with:
 1. Fill out the fields for a fake user
 1. Click **Register**
 1. Open the Mailhog UI
-1. Click the email with subject **Verify email**
-1. Click the **Link to e-mail address verification** link
+1. Click the email from `no-reply@example.com` with subject **Verify email**
+1. Click the **Link to e-mail address verification**
 1. Notice how you're automatically logged into the React app with your newly created user
 
 ## High-level summary of common flows
@@ -149,13 +149,24 @@ Thankfully the [react-oidc-context](https://github.com/authts/react-oidc-context
 
 This flow is known as [Authorization Code Grant with Proof Key for Code Exchange (PKCE)](https://github.com/authts/oidc-client-ts/blob/main/docs/protocols/authorization-code-grant-with-pkce.md).
 
+You can see this happen for yourself by doing: Open your browser **DevTools**, go to the **Network** tab, check **Preserve log**, and filter requests by **Doc** and **Fetch/XHR**.
+
 1. Go to the React app
-    - **Request URL**: GET http://localhost:5173/
+    - **Request URL**:
+
+          GET http://localhost:5173/
+
 1. The OpenID config is fetched
-    - **Request URL**: GET http://localhost:8080/realms/master/.well-known/openid-configuration
+    - **Request URL**:
+
+          GET http://localhost:8080/realms/master/.well-known/openid-configuration
+
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. You're not logged in, so you're redirected to the Keycloak login page
-    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/auth
+    - **Request URL**:
+
+          GET http://localhost:8080/realms/master/protocol/openid-connect/auth
+
     - **Request query params**:
 
           client_id: react
@@ -167,7 +178,10 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
           code_challenge_method: S256
 
 1. Submit your username and password
-    - **Request URL**: POST http://localhost:8080/realms/master/login-actions/authenticate
+    - **Request URL**:
+
+          POST http://localhost:8080/realms/master/login-actions/authenticate
+
     - **Request query params**:
 
           session_code: NSBRN5i4WCHlUNM-Fr_7sVGv_luCqlcuj-dYvRgPGbg
@@ -182,7 +196,10 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
           credentialId:
 
 1. On success, you're redirected to the React app
-    - **Request URL**: GET http://localhost:5173/
+    - **Request URL**:
+
+          GET http://localhost:5173/
+
     - **Request query params**:
 
           state: 391fb773c982414baed2250583113efc
@@ -191,7 +208,10 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
           code: 44891f5f-be56-4fc4-b970-8f1dd0d88fbe.683043bb-2209-47ff-b0a5-2c0197ab2507.acc4f3dc-25c9-4716-bfa5-cde9f19c8c32
 
 1. The token is fetched
-    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/token
+    - **Request URL**:
+
+          GET http://localhost:8080/realms/master/protocol/openid-connect/token
+
     - **Request form data**:
 
           grant_type: authorization_code
@@ -218,14 +238,20 @@ This flow is known as [Authorization Code Grant with Proof Key for Code Exchange
 
 1. Go to the React app, login, then click the **Playground** page
 1. An API request is made, which the Vite dev server proxies to the correct location on the server
-    - **Request URL**: GET http://localhost:5173/api/payload
+    - **Request URL**:
+
+          GET http://localhost:5173/api/payload
+
     - **Request headers**: _Only relevant headers are included. The access token value is truncated for brevity_
 
           authorization: Bearer eyJ...
 
 1. The server receives the request. The token is parsed from the `authorization` header
 1. The server requests the JSON web key set
-    - **Request URL**: GET http://localhost:8080/realms/master/protocol/openid-connect/certs
+    - **Request URL**:
+
+          GET http://localhost:8080/realms/master/protocol/openid-connect/certs
+
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the token
 1. The server responds to the React app
