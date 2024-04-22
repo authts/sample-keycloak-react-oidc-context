@@ -30,6 +30,7 @@ Minimal, reproducible example for Keycloak + React.
   * [Email](#email)
 - [Sharing](#sharing)
 - [Disclaimers](#disclaimers)
+- [History](#history)
 
 <!-- tocstop -->
 
@@ -308,3 +309,7 @@ Places where this project has been shared.
 
 - The `Dockerfile` for each service is optimized for local development mode. **DO NOT** use this configuration in production
 - For convenience, the admin user is also used for regular app logins. In production, the admin account would be locked down, and you'd have regular, _non-admin_ users
+
+## History
+
+This repo originally lived at [zach-betz-hln/mre-keycloak-react](https://github.com/zach-betz-hln/mre-keycloak-react). For context, see this [issue](https://github.com/authts/react-oidc-context/issues/1208).
