@@ -1,4 +1,4 @@
-# mre-keycloak-react
+# sample-keycloak-react-oidc-context
 
 Minimal, reproducible example for Keycloak + React.
 
