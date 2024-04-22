@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+        env:
+          CI: true
+
+      - name: Cache incremental builds
+        uses: actions/cache@v3
+        with:
+          path: |
+            .eslintcache
+            **/node_modules/.cache
+          key: build-${{ github.head_ref }}-${{ github.sha }}
+          restore-keys: |
+            build-${{ github.head_ref }}-
+            build-refs/heads/main-
+
+      # root
+      #- run: |
+      #    npm ci
+      #    npm run build
+
+      - name: api
+        run: |
+          npm ci
+          npm run build
+        working-directory: api
+
+      - name: react
+        run: |
+          npm ci
+          npm run build
+        working-directory: react
