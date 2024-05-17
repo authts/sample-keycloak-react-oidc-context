@@ -8,17 +8,17 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "jose": "^5.2.4"
+    "jose": "^5.3.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.12.7",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "tsx": "^4.7.2",
+    "tsx": "^4.10.4",
     "typescript": "^5.4.5"
   }
 }
