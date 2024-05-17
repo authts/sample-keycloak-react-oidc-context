@@ -874,6 +874,7 @@ COPY public.idp_mapper_config (idp_mapper_id, value, name) FROM stdin;
 COPY public.migration_model (id, version, update_time) FROM stdin;
 rg5y4	24.0.2	1713242627
 l88vu	24.0.3	1713381283
+kq18k	24.0.4	1715976025
 \.
 
 
