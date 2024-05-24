@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  devcontainer:
+    build: {
+        dockerfile: Dockerfile
+    }
+    volumes:
+      - ../..:/workspaces:cached
+    network_mode: service:db
+    command: sleep infinity
+
+  db:
+    image: postgres:16.3-bookworm
+    restart: unless-stopped
+    shm_size: 128mb
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  kc:
+    image: quay.io/keycloak/keycloak:24.0.4
+    command: start-dev
+    ports:
+      - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
+    depends_on:
+      - db
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: ${KC_DB}
+      KC_DB_URL_HOST: ${KC_DB_URL_HOST}
+      KC_DB_URL_PORT: ${KC_DB_URL_PORT}
+      KC_DB_URL_DATABASE: ${KC_DB_URL_DATABASE}
+      KC_DB_SCHEMA: ${KC_DB_SCHEMA}
+      KC_DB_USERNAME: ${KC_DB_USERNAME}
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+      KC_HTTP_PORT: ${KC_HTTP_PORT}
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    depends_on:
+      - kc
+    ports:
+      - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
+
+  api:
+    build:
+      context: ../api
+    ports:
+      - ${API_PORT}:${API_PORT}
+    environment:
+      API_PORT: ${API_PORT}
+      API_JSON_WEB_KEY_SET_URL: ${API_JSON_WEB_KEY_SET_URL}
+
+volumes:
+  postgres-data:

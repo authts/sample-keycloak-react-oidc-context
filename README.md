@@ -42,49 +42,26 @@ So, I thought it'd be cool to make a little project that glues these tools toget
 
 > The noblest pleasure is the joy of understanding. - Leonardo da Vinci
 
-## Setup
-
-In one terminal, run the Postgres database, Keycloak server, Mailhog server, and Express API via Docker Compose.
-
-In another terminal, run the React app.
-
-### Docker Compose
+## Installation
 
 1. Install [Docker](https://docs.docker.com/get-docker/)
-1. Copy file `.env.sample` to file `.env`
+1. Install [Visual Studio Code](https://code.visualstudio.com/)
+1. Install [Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
-        cp .env.sample .env
+### Getting started
 
-1. Build images
-
-        docker compose build
-
-1. Run containers
-
-        docker compose up
+1. Clone this repo locally.
+1. Start VS Code
+1. Run the Dev Containers: Open Folder in Container... command and select the local folder.
+1. That's it. You have all the setup isolated inside a dev container ready to run.
 
 ### React app
 
-1. Install [Node.js](https://nodejs.org/en)
-1. Change to `react` folder
-
-        cd react
-
-1. Install packages
-
-        npm install
-
-1. Start dev server
+1. Start dev server in a visual code terminal.
 
         npm run dev
 
 1. See [links](#links) for username and password
-
-## Config
-
-The Docker Compose config should work as-is. If you need to customize it, like changing what port a service runs on, then edit file `.env`
-
-The React config should work as-is as well. If you need to customize it, then edit file `react/.env`
 
 ## Links
 
@@ -93,7 +70,7 @@ The React config should work as-is as well. If you need to customize it, then ed
 - **Link**: http://localhost:5173
 - **Username**:
 
-      admin@example.com
+      bruce@example.com
 
 - **Password**:
 
@@ -102,12 +79,12 @@ The React config should work as-is as well. If you need to customize it, then ed
 ### Keycloak account console
 
 - **Link**: http://localhost:8080/realms/master/account/
-- **Credentials**: _same as React app_
+- **Credentials**: admin
 
 ### Keycloak admin console
 
 - **Link**: http://localhost:8080/admin/master/console/
-- **Credentials**: _same as React app_
+- **Credentials**: admin
 
 ### Mailhog UI
 
@@ -163,13 +140,13 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 1. The OpenID config is fetched
     - **Request URL**:
 
-          GET http://localhost:8080/realms/master/.well-known/openid-configuration
+          GET http://localhost:8080/realms/sample-keycloak-react-oidc-context/.well-known/openid-configuration
 
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. You're not logged in, so you're redirected to the Keycloak login page
     - **Request URL**:
 
-          GET http://localhost:8080/realms/master/protocol/openid-connect/auth
+          GET http://localhost:8080/realms/sample-keycloak-react-oidc-context/protocol/openid-connect/auth
 
     - **Request query params**:
 
@@ -195,7 +172,7 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 
     - **Request form data**:
 
-          username: admin@example.com
+          username: bruce@example.com
           password: juggle-prance-shallot-wireless-outlet
           credentialId:
 
@@ -208,13 +185,13 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 
           state: 391fb773c982414baed2250583113efc
           session_state: 683043bb-2209-47ff-b0a5-2c0197ab2507
-          iss: http://localhost:8080/realms/master
+          iss: http://localhost:8080/realms/sample-keycloak-react-oidc-context
           code: 44891f5f-be56-4fc4-b970-8f1dd0d88fbe.683043bb-2209-47ff-b0a5-2c0197ab2507.acc4f3dc-25c9-4716-bfa5-cde9f19c8c32
 
 1. The token is fetched
     - **Request URL**:
 
-          GET http://localhost:8080/realms/master/protocol/openid-connect/token
+          GET http://localhost:8080/realms/sample-keycloak-react-oidc-context/protocol/openid-connect/token
 
     - **Request form data**:
 
@@ -254,7 +231,7 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 1. The API server requests the JSON web key set
     - **Request URL**:
 
-          GET http://localhost:8080/realms/master/protocol/openid-connect/certs
+          GET http://localhost:8080/realms/sample-keycloak-react-oidc-context/protocol/openid-connect/certs
 
     - **Response body**: _Omitted for brevity. Go to the request URL to see it_
 1. The [jose](https://github.com/panva/jose) library consumes the JSON web key set, then uses it to verify the token
@@ -262,9 +239,7 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 
 ## Seeded data
 
-The `db/init` folder contains SQL which is copied into the Postgres image and runs on container startup.
-
-I didn't write this SQL by hand. Instead, I customized the `master` realm a tad, then dumped the data. See script `task_dump_kc_data.sh`
+The `scripts/config/realm-export.json` file contains an exported realm from Keycloak.
 
 ### Clients
 
