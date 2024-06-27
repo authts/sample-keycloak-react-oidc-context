@@ -1,10 +1,8 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
-const filePath = resolve('package.json');
-const json = readFileSync(filePath, { encoding: 'utf-8' });
-const obj = JSON.parse(json);
+const obj = JSON.parse(readFileSync(resolve('package.json'), { encoding: 'utf-8' }));
 const dependencies = Object.keys(obj['dependencies'] ?? {});
 const devDependencies = Object.keys(obj['devDependencies'] ?? {});
-const command = `npm install ${dependencies.join(' ')} && npm install --save-dev ${devDependencies.join(' ')}`;
+const command = `npm i ${dependencies.join(' ')} && npm i -D ${devDependencies.join(' ')}`;
 console.log(command);
