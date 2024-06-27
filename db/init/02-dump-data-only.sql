@@ -234,6 +234,7 @@ f95d737d-89d0-446b-a1e3-1908c7850244	email	04d6226e-e85e-4251-b423-a3525954ba75	
 7ec4f5bc-dff2-424b-8209-4386426fc5f3	web-origins	04d6226e-e85e-4251-b423-a3525954ba75	OpenID Connect scope for add allowed web origins to the access token	openid-connect
 5e48374c-2800-4a69-a617-12c7f370f693	microprofile-jwt	04d6226e-e85e-4251-b423-a3525954ba75	Microprofile - JWT built-in scope	openid-connect
 27c41cc1-b460-4854-b815-ace3b602a66f	acr	04d6226e-e85e-4251-b423-a3525954ba75	OpenID Connect scope for add acr (authentication context class reference) to the token	openid-connect
+2b3aa381-13b4-47f0-9d9c-65d8d770b053	basic	04d6226e-e85e-4251-b423-a3525954ba75	OpenID Connect scope for add all basic claims to the token	openid-connect
 \.
 
 
@@ -268,6 +269,8 @@ f95d737d-89d0-446b-a1e3-1908c7850244	true	include.in.token.scope
 5e48374c-2800-4a69-a617-12c7f370f693	true	include.in.token.scope
 27c41cc1-b460-4854-b815-ace3b602a66f	false	display.on.consent.screen
 27c41cc1-b460-4854-b815-ace3b602a66f	false	include.in.token.scope
+2b3aa381-13b4-47f0-9d9c-65d8d770b053	false	display.on.consent.screen
+2b3aa381-13b4-47f0-9d9c-65d8d770b053	false	include.in.token.scope
 \.
 
 
@@ -339,6 +342,11 @@ acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	5cdbe4b0-41d5-4886-9576-5854ff56c3a9	f
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	7b218e50-a063-401a-840d-35a58b895d3b	f
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	5e48374c-2800-4a69-a617-12c7f370f693	f
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	88c3b951-14fc-46ca-87d0-8cddc871a484	f
+fdb3ebcc-007f-4d97-875d-c67e4c16fd05	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
+ed96f561-820c-410c-8967-085e0fb27005	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
+87ac131c-123c-41cc-b848-9646e95305a7	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
+acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
+40a12ed1-e236-46be-94c7-18f6e3b3cf2b	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
 \.
 
 
@@ -566,7 +574,7 @@ f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	
 
 COPY public.credential (id, salt, type, user_id, created_date, user_label, secret_data, credential_data, priority) FROM stdin;
 c8932fd5-dabb-4b15-ad85-c31f8559da20	\N	password	2d02276f-b6a4-4c43-90f6-827765a1d799	1713245000180	\N	{"value":"uqvXbTlWHK37Dy+EPPeREuTgvaN2rPcqobewCcuXnQkxSm2X/ubucDxHkuPiJMzpXYhQ2gpedc1uQGg6o2p8uw==","salt":"GTYxDyifTCaMHCytYR3yQw==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
-79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713381368523	My password	{"value":"pr6babL4/sv2AZmgOEHYgo+GdM/sNVTRU6FxP3bOJRzeFqm6VJIJ5e9IxQ8aRim/ZeROevWCZnbUXTnbfV+D6A==","salt":"OvQVva1Fgp5i8CoSJFBUeQ==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
+79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713381368523	My password	{"value":"1XmLHvnqWaOYaahrGSVnVPVQjD64jmV8uKFJMGTkEW8=","salt":"q9xNSv2JuL/C9MxE89swRg==","additionalParameters":{}}	{"hashIterations":5,"algorithm":"argon2","additionalParameters":{"hashLength":["32"],"memory":["7168"],"type":["id"],"version":["1.3"],"parallelism":["1"]}}	10
 \.
 
 
@@ -699,6 +707,15 @@ client-attributes-string-accomodation-fixed	keycloak	META-INF/jpa-changelog-20.0
 24.0.2-27228	keycloak	META-INF/jpa-changelog-24.0.2.xml	2024-04-16 04:43:46.918262	122	EXECUTED	9:eaee11f6b8aa25d2cc6a84fb86fc6238	customChange		\N	4.25.1	\N	\N	3242626086
 24.0.2-27967-drop-index-if-present	keycloak	META-INF/jpa-changelog-24.0.2.xml	2024-04-16 04:43:46.918802	123	MARK_RAN	9:04baaf56c116ed19951cbc2cca584022	dropIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES		\N	4.25.1	\N	\N	3242626086
 24.0.2-27967-reindex	keycloak	META-INF/jpa-changelog-24.0.2.xml	2024-04-16 04:43:46.919504	124	MARK_RAN	9:d3d977031d431db16e2c181ce49d73e9	createIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES		\N	4.25.1	\N	\N	3242626086
+25.0.0-28265-tables	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.23437	125	EXECUTED	9:deda2df035df23388af95bbd36c17cef	addColumn tableName=OFFLINE_USER_SESSION; addColumn tableName=OFFLINE_CLIENT_SESSION		\N	4.25.1	\N	\N	9498304214
+25.0.0-28265-index-creation	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.239902	126	EXECUTED	9:3e96709818458ae49f3c679ae58d263a	createIndex indexName=IDX_OFFLINE_USS_BY_LAST_SESSION_REFRESH, tableName=OFFLINE_USER_SESSION		\N	4.25.1	\N	\N	9498304214
+25.0.0-28265-index-cleanup	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.243966	127	EXECUTED	9:8c0cfa341a0474385b324f5c4b2dfcc1	dropIndex indexName=IDX_OFFLINE_USS_CREATEDON, tableName=OFFLINE_USER_SESSION; dropIndex indexName=IDX_OFFLINE_USS_PRELOAD, tableName=OFFLINE_USER_SESSION; dropIndex indexName=IDX_OFFLINE_USS_BY_USERSESS, tableName=OFFLINE_USER_SESSION; dropIndex ...		\N	4.25.1	\N	\N	9498304214
+25.0.0-28265-index-2-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.245862	128	MARK_RAN	9:b7ef76036d3126bb83c2423bf4d449d6	createIndex indexName=IDX_OFFLINE_USS_BY_BROKER_SESSION_ID, tableName=OFFLINE_USER_SESSION		\N	4.25.1	\N	\N	9498304214
+25.0.0-28265-index-2-not-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.249509	129	EXECUTED	9:23396cf51ab8bc1ae6f0cac7f9f6fcf7	createIndex indexName=IDX_OFFLINE_USS_BY_BROKER_SESSION_ID, tableName=OFFLINE_USER_SESSION		\N	4.25.1	\N	\N	9498304214
+25.0.0-org	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.26509	130	EXECUTED	9:5c859965c2c9b9c72136c360649af157	createTable tableName=ORG; addUniqueConstraint constraintName=UK_ORG_NAME, tableName=ORG; addUniqueConstraint constraintName=UK_ORG_GROUP, tableName=ORG; createTable tableName=ORG_DOMAIN		\N	4.25.1	\N	\N	9498304214
+unique-consentuser	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.27858	131	EXECUTED	9:5857626a2ea8767e9a6c66bf3a2cb32f	customChange; dropUniqueConstraint constraintName=UK_JKUWUVD56ONTGSUHOGM8UEWRT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_LOCAL_CONSENT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_EXTERNAL_CONSENT, tableName=...		\N	4.25.1	\N	\N	9498304214
+unique-consentuser-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.279673	132	MARK_RAN	9:b79478aad5adaa1bc428e31563f55e8e	customChange; dropUniqueConstraint constraintName=UK_JKUWUVD56ONTGSUHOGM8UEWRT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_LOCAL_CONSENT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_EXTERNAL_CONSENT, tableName=...		\N	4.25.1	\N	\N	9498304214
+25.0.0-28861-index-creation	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.284481	133	EXECUTED	9:b9acb58ac958d9ada0fe12a5d4794ab1	createIndex indexName=IDX_PERM_TICKET_REQUESTER, tableName=RESOURCE_SERVER_PERM_TICKET; createIndex indexName=IDX_PERM_TICKET_OWNER, tableName=RESOURCE_SERVER_PERM_TICKET		\N	4.25.1	\N	\N	9498304214
 \.
 
 
@@ -728,6 +745,7 @@ COPY public.default_client_scope (realm_id, scope_id, default_scope) FROM stdin;
 04d6226e-e85e-4251-b423-a3525954ba75	7ec4f5bc-dff2-424b-8209-4386426fc5f3	t
 04d6226e-e85e-4251-b423-a3525954ba75	5e48374c-2800-4a69-a617-12c7f370f693	f
 04d6226e-e85e-4251-b423-a3525954ba75	27c41cc1-b460-4854-b815-ace3b602a66f	t
+04d6226e-e85e-4251-b423-a3525954ba75	2b3aa381-13b4-47f0-9d9c-65d8d770b053	t
 \.
 
 
@@ -875,6 +893,7 @@ COPY public.migration_model (id, version, update_time) FROM stdin;
 rg5y4	24.0.2	1713242627
 l88vu	24.0.3	1713381283
 kq18k	24.0.4	1715976025
+3p70k	25.0.1	1719498304
 \.
 
 
@@ -882,7 +901,7 @@ kq18k	24.0.4	1715976025
 -- Data for Name: offline_client_session; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.offline_client_session (user_session_id, client_id, offline_flag, "timestamp", data, client_storage_provider, external_client_id) FROM stdin;
+COPY public.offline_client_session (user_session_id, client_id, offline_flag, "timestamp", data, client_storage_provider, external_client_id, version) FROM stdin;
 \.
 
 
@@ -890,7 +909,23 @@ COPY public.offline_client_session (user_session_id, client_id, offline_flag, "t
 -- Data for Name: offline_user_session; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.offline_user_session (user_session_id, user_id, realm_id, created_on, offline_flag, data, last_session_refresh) FROM stdin;
+COPY public.offline_user_session (user_session_id, user_id, realm_id, created_on, offline_flag, data, last_session_refresh, broker_session_id, version) FROM stdin;
+\.
+
+
+--
+-- Data for Name: org; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.org (id, enabled, realm_id, group_id, name, description) FROM stdin;
+\.
+
+
+--
+-- Data for Name: org_domain; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.org_domain (id, name, verified, org_id) FROM stdin;
 \.
 
 
@@ -936,6 +971,8 @@ fccaf7e3-7bd0-49ad-8ea8-04993735221c	audience resolve	openid-connect	oidc-audien
 93717424-f8a9-479f-9bdd-4935e90647af	upn	openid-connect	oidc-usermodel-attribute-mapper	\N	5e48374c-2800-4a69-a617-12c7f370f693
 b0b60267-57eb-44c6-a7d6-3e7005f8a331	groups	openid-connect	oidc-usermodel-realm-role-mapper	\N	5e48374c-2800-4a69-a617-12c7f370f693
 a5636c67-39c5-468e-9603-9b6a38bb1509	acr loa level	openid-connect	oidc-acr-mapper	\N	27c41cc1-b460-4854-b815-ace3b602a66f
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	auth_time	openid-connect	oidc-usersessionmodel-note-mapper	\N	2b3aa381-13b4-47f0-9d9c-65d8d770b053
+534a2197-3e3f-4dc1-85b7-e83ce44bfe13	sub	openid-connect	oidc-sub-mapper	\N	2b3aa381-13b4-47f0-9d9c-65d8d770b053
 \.
 
 
@@ -1120,6 +1157,14 @@ b0b60267-57eb-44c6-a7d6-3e7005f8a331	String	jsonType.label
 a5636c67-39c5-468e-9603-9b6a38bb1509	true	introspection.token.claim
 a5636c67-39c5-468e-9603-9b6a38bb1509	true	id.token.claim
 a5636c67-39c5-468e-9603-9b6a38bb1509	true	access.token.claim
+534a2197-3e3f-4dc1-85b7-e83ce44bfe13	true	introspection.token.claim
+534a2197-3e3f-4dc1-85b7-e83ce44bfe13	true	access.token.claim
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	AUTH_TIME	user.session.note
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	true	introspection.token.claim
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	true	id.token.claim
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	true	access.token.claim
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	auth_time	claim.name
+64fd7629-8135-4bf5-bd7d-1c53c368d7cb	long	jsonType.label
 \.
 
 

@@ -25,3 +25,6 @@ dist-ssr
 
 # Unlike backend apps, the React .env is committed to git. To override env vars, create .env.local, which is ignored by git
 !.env
+
+# Cache
+.eslintcache

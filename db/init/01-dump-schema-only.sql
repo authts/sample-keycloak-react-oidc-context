@@ -783,7 +783,8 @@ CREATE TABLE public.offline_client_session (
     "timestamp" integer,
     data text,
     client_storage_provider character varying(36) DEFAULT 'local'::character varying NOT NULL,
-    external_client_id character varying(255) DEFAULT 'local'::character varying NOT NULL
+    external_client_id character varying(255) DEFAULT 'local'::character varying NOT NULL,
+    version integer DEFAULT 0
 );
 
 
@@ -800,11 +801,43 @@ CREATE TABLE public.offline_user_session (
     created_on integer NOT NULL,
     offline_flag character varying(4) NOT NULL,
     data text,
-    last_session_refresh integer DEFAULT 0 NOT NULL
+    last_session_refresh integer DEFAULT 0 NOT NULL,
+    broker_session_id character varying(1024),
+    version integer DEFAULT 0
 );
 
 
 ALTER TABLE public.offline_user_session OWNER TO admin;
+
+--
+-- Name: org; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.org (
+    id character varying(255) NOT NULL,
+    enabled boolean NOT NULL,
+    realm_id character varying(255) NOT NULL,
+    group_id character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(4000)
+);
+
+
+ALTER TABLE public.org OWNER TO admin;
+
+--
+-- Name: org_domain; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.org_domain (
+    id character varying(36) NOT NULL,
+    name character varying(255) NOT NULL,
+    verified boolean NOT NULL,
+    org_id character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.org_domain OWNER TO admin;
 
 --
 -- Name: policy_config; Type: TABLE; Schema: public; Owner: admin
@@ -1461,6 +1494,22 @@ ALTER TABLE public.web_origins OWNER TO admin;
 
 ALTER TABLE ONLY public.username_login_failure
     ADD CONSTRAINT "CONSTRAINT_17-2" PRIMARY KEY (realm_id, username);
+
+
+--
+-- Name: org_domain ORG_DOMAIN_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.org_domain
+    ADD CONSTRAINT "ORG_DOMAIN_pkey" PRIMARY KEY (id, name);
+
+
+--
+-- Name: org ORG_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.org
+    ADD CONSTRAINT "ORG_pkey" PRIMARY KEY (id);
 
 
 --
@@ -2240,6 +2289,14 @@ ALTER TABLE ONLY public.user_entity
 
 
 --
+-- Name: user_consent uk_external_consent; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.user_consent
+    ADD CONSTRAINT uk_external_consent UNIQUE (client_storage_provider, external_client_id, user_id);
+
+
+--
 -- Name: resource_server_resource uk_frsr6t700s9v50bu18ws5ha6; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -2272,11 +2329,27 @@ ALTER TABLE ONLY public.resource_server_scope
 
 
 --
--- Name: user_consent uk_jkuwuvd56ontgsuhogm8uewrt; Type: CONSTRAINT; Schema: public; Owner: admin
+-- Name: user_consent uk_local_consent; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
 ALTER TABLE ONLY public.user_consent
-    ADD CONSTRAINT uk_jkuwuvd56ontgsuhogm8uewrt UNIQUE (client_id, client_storage_provider, external_client_id, user_id);
+    ADD CONSTRAINT uk_local_consent UNIQUE (client_id, user_id);
+
+
+--
+-- Name: org uk_org_group; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.org
+    ADD CONSTRAINT uk_org_group UNIQUE (group_id);
+
+
+--
+-- Name: org uk_org_name; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.org
+    ADD CONSTRAINT uk_org_name UNIQUE (realm_id, name);
 
 
 --
@@ -2618,10 +2691,17 @@ CREATE INDEX idx_keycloak_role_realm ON public.keycloak_role USING btree (realm)
 
 
 --
--- Name: idx_offline_css_preload; Type: INDEX; Schema: public; Owner: admin
+-- Name: idx_offline_uss_by_broker_session_id; Type: INDEX; Schema: public; Owner: admin
 --
 
-CREATE INDEX idx_offline_css_preload ON public.offline_client_session USING btree (client_id, offline_flag);
+CREATE INDEX idx_offline_uss_by_broker_session_id ON public.offline_user_session USING btree (broker_session_id, realm_id);
+
+
+--
+-- Name: idx_offline_uss_by_last_session_refresh; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_offline_uss_by_last_session_refresh ON public.offline_user_session USING btree (realm_id, offline_flag, last_session_refresh);
 
 
 --
@@ -2632,24 +2712,17 @@ CREATE INDEX idx_offline_uss_by_user ON public.offline_user_session USING btree 
 
 
 --
--- Name: idx_offline_uss_by_usersess; Type: INDEX; Schema: public; Owner: admin
+-- Name: idx_perm_ticket_owner; Type: INDEX; Schema: public; Owner: admin
 --
 
-CREATE INDEX idx_offline_uss_by_usersess ON public.offline_user_session USING btree (realm_id, offline_flag, user_session_id);
-
-
---
--- Name: idx_offline_uss_createdon; Type: INDEX; Schema: public; Owner: admin
---
-
-CREATE INDEX idx_offline_uss_createdon ON public.offline_user_session USING btree (created_on);
+CREATE INDEX idx_perm_ticket_owner ON public.resource_server_perm_ticket USING btree (owner);
 
 
 --
--- Name: idx_offline_uss_preload; Type: INDEX; Schema: public; Owner: admin
+-- Name: idx_perm_ticket_requester; Type: INDEX; Schema: public; Owner: admin
 --
 
-CREATE INDEX idx_offline_uss_preload ON public.offline_user_session USING btree (offline_flag, created_on, user_session_id);
+CREATE INDEX idx_perm_ticket_requester ON public.resource_server_perm_ticket USING btree (requester);
 
 
 --
