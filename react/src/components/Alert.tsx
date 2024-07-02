@@ -3,11 +3,11 @@ interface AlertProps {
   children: React.ReactNode;
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+export const Alert: React.FC<AlertProps> = (props) => {
   const { variant, children } = props;
 
-  let backgroundColor;
-  let color;
+  let backgroundColor: string | undefined;
+  let color: string | undefined;
 
   if (variant === 'success') {
     backgroundColor = 'rgb(237, 247, 237)';
@@ -21,5 +21,3 @@ const Alert: React.FC<AlertProps> = (props) => {
 
   return <div style={{ backgroundColor, color, padding: '1rem', whiteSpace: 'pre-wrap' }}>{children}</div>;
 };
-
-export default Alert;

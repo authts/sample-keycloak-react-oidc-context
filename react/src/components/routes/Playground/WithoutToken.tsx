@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import Alert from '../../Alert';
 import { sleep } from '../../../utils';
+import { Alert } from '../../Alert';
 
-const WithoutToken: React.FC = () => {
+export const WithoutToken: React.FC = () => {
   const queryFn = async () => {
     // simulate slow network
     await sleep(500);
@@ -32,5 +32,3 @@ const WithoutToken: React.FC = () => {
     <Alert variant="success">{JSON.stringify(data, null, 2)}</Alert>
   );
 };
-
-export default WithoutToken;
