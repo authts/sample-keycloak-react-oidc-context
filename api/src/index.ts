@@ -1,8 +1,10 @@
 import express from 'express';
 import { verifyJwtMiddleware } from './jwtUtils.js';
-import { AugmentedRequest } from './types.js';
+import type { AugmentedRequest } from './types.js';
 
 const app = express();
+
+// biome-ignore lint/style/noNonNullAssertion: We expect this env var to always be populated
 const port = Number(process.env.API_PORT!);
 
 app.use(verifyJwtMiddleware);

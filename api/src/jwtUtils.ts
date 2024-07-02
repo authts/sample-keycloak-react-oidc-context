@@ -1,11 +1,12 @@
-import * as jose from 'jose';
-import { NextFunction, Request, Response } from 'express';
-import { AugmentedRequest } from './types.js';
+import type { NextFunction, Request, Response } from 'express';
+import { type JWTVerifyGetKey, createRemoteJWKSet, jwtVerify } from 'jose';
+import type { AugmentedRequest } from './types.js';
 
+// biome-ignore lint/style/noNonNullAssertion: We expect this env var to always be populated
 const jsonWebKeySetUrl = process.env.API_JSON_WEB_KEY_SET_URL!;
 
 // This function is cached so that the json web key set is not looked up on every request
-let getJsonWebKeySet: jose.JWTVerifyGetKey | null = null;
+let getJsonWebKeySet: JWTVerifyGetKey | null = null;
 
 const parseBearerToken = (req: Request): string | null => {
   const [type, token] = req.headers.authorization?.split(' ') ?? [];
@@ -21,7 +22,7 @@ const parseBearerToken = (req: Request): string | null => {
   return token;
 };
 
-export const verifyJwtMiddleware = (req: Request, res: Response, next: NextFunction): void | Response => {
+export const verifyJwtMiddleware = (req: Request, res: Response, next: NextFunction): undefined | Response => {
   const token = parseBearerToken(req);
 
   if (!token) {
@@ -32,15 +33,14 @@ export const verifyJwtMiddleware = (req: Request, res: Response, next: NextFunct
   if (!getJsonWebKeySet) {
     try {
       console.log(`Calling createRemoteJWKSet with ${jsonWebKeySetUrl}`);
-      getJsonWebKeySet = jose.createRemoteJWKSet(new URL(jsonWebKeySetUrl));
+      getJsonWebKeySet = createRemoteJWKSet(new URL(jsonWebKeySetUrl));
     } catch (error) {
       console.error('Unable to call createRemoteJWKSet', error);
       return res.sendStatus(401);
     }
   }
 
-  jose
-    .jwtVerify(token, getJsonWebKeySet)
+  jwtVerify(token, getJsonWebKeySet)
     .then((data) => {
       (req as AugmentedRequest).payload = data.payload;
       next();

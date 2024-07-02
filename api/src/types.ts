@@ -1,6 +1,6 @@
-import * as jose from 'jose';
-import { Request } from 'express';
+import type { Request } from 'express';
+import type { JWTPayload } from 'jose';
 
 export interface AugmentedRequest extends Request {
-  payload: jose.JWTPayload;
+  payload: JWTPayload;
 }
