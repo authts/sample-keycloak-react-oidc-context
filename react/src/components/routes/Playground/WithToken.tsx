@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import Alert from '../../Alert';
 import { useAuth } from 'react-oidc-context';
 import { sleep } from '../../../utils';
+import { Alert } from '../../Alert';
 
-const WithToken: React.FC = () => {
+export const WithToken: React.FC = () => {
   const auth = useAuth();
 
   const queryFn = async () => {
@@ -39,5 +39,3 @@ const WithToken: React.FC = () => {
     <Alert variant="success">{JSON.stringify(data, null, 2)}</Alert>
   );
 };
-
-export default WithToken;

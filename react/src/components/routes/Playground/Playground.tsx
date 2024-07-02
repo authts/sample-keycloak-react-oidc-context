@@ -1,7 +1,7 @@
-import WithoutToken from './WithoutToken';
-import WithToken from './WithToken';
+import { WithToken } from './WithToken';
+import { WithoutToken } from './WithoutToken';
 
-const Playground: React.FC = () => {
+export const Playground: React.FC = () => {
   return (
     <>
       <h1>Playground</h1>
@@ -20,5 +20,3 @@ const Playground: React.FC = () => {
     </>
   );
 };
-
-export default Playground;

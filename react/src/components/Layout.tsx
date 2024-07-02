@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
-import { AppRoutes } from '../constants';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from 'react-oidc-context';
 import styled from '@emotion/styled';
+import type { ReactNode } from 'react';
+import { useAuth } from 'react-oidc-context';
+import { useNavigate } from 'react-router-dom';
+import { appRoutes } from '../constants';
 
 const Container = styled.div`
   margin-left: auto;
@@ -51,7 +51,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = (props) => {
+export const Layout: React.FC<LayoutProps> = (props) => {
   const { children } = props;
   const auth = useAuth();
   const navigate = useNavigate();
@@ -61,14 +61,14 @@ const Layout: React.FC<LayoutProps> = (props) => {
       text: 'Home',
       protected: true,
       action: () => {
-        navigate(AppRoutes.Home);
+        navigate(appRoutes.home);
       }
     },
     {
       text: 'Playground',
       protected: true,
       action: () => {
-        navigate(AppRoutes.Playground);
+        navigate(appRoutes.playground);
       }
     },
     {
@@ -99,5 +99,3 @@ const Layout: React.FC<LayoutProps> = (props) => {
     </Container>
   );
 };
-
-export default Layout;

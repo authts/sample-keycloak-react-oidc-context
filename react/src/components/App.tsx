@@ -1,19 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoutes } from '../constants';
-import NotFound from './routes/NotFound';
-import Home from './routes/Home';
-import Playground from './routes/Playground/Playground';
+import { appRoutes } from '../constants';
+import { Home } from './routes/Home';
+import { NotFound } from './routes/NotFound';
+import { Playground } from './routes/Playground/Playground';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <Routes>
-      <Route path={AppRoutes.Home}>
-        <Route index element={<Home />} />
-        <Route path={AppRoutes.NotFound} element={<NotFound />} />
-        <Route path={AppRoutes.Playground} element={<Playground />} />
+      <Route path={appRoutes.home}>
+        <Route index={true} element={<Home />} />
+        <Route path={appRoutes.notFound} element={<NotFound />} />
+        <Route path={appRoutes.playground} element={<Playground />} />
       </Route>
     </Routes>
   );
 };
-
-export default App;

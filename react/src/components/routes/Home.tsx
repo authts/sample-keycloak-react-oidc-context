@@ -1,5 +1,5 @@
 import { useAuth } from 'react-oidc-context';
-import SimpleTable from '../SimpleTable';
+import { SimpleTable } from '../SimpleTable';
 
 interface Row {
   label: string;
@@ -19,7 +19,7 @@ const createRows = (data?: unknown): Row[] => {
   });
 };
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
   const auth = useAuth();
 
   return (
@@ -46,5 +46,3 @@ const Home: React.FC = () => {
     </>
   );
 };
-
-export default Home;

@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-const NotFound: React.FC = () => {
+export const NotFound: React.FC = () => {
   const location = useLocation();
 
   return (
@@ -12,5 +12,3 @@ const NotFound: React.FC = () => {
     </>
   );
 };
-
-export default NotFound;

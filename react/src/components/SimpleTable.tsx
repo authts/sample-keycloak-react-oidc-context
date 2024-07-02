@@ -26,7 +26,7 @@ interface SimpleTableProps {
   rows: Row[];
 }
 
-const SimpleTable: React.FC<SimpleTableProps> = (props) => {
+export const SimpleTable: React.FC<SimpleTableProps> = (props) => {
   const { rows } = props;
 
   return (
@@ -54,5 +54,3 @@ const SimpleTable: React.FC<SimpleTableProps> = (props) => {
     </ScrollableData>
   );
 };
-
-export default SimpleTable;
