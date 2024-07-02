@@ -2,7 +2,7 @@
   "scripts": {
     "toc": "markdown-toc -i README.md"
   },
-  "dependencies": {
+  "devDependencies": {
     "markdown-toc": "^1.2.0"
   }
 }
