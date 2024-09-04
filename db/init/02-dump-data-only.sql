@@ -716,6 +716,7 @@ client-attributes-string-accomodation-fixed	keycloak	META-INF/jpa-changelog-20.0
 unique-consentuser	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.27858	131	EXECUTED	9:5857626a2ea8767e9a6c66bf3a2cb32f	customChange; dropUniqueConstraint constraintName=UK_JKUWUVD56ONTGSUHOGM8UEWRT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_LOCAL_CONSENT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_EXTERNAL_CONSENT, tableName=...		\N	4.25.1	\N	\N	9498304214
 unique-consentuser-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.279673	132	MARK_RAN	9:b79478aad5adaa1bc428e31563f55e8e	customChange; dropUniqueConstraint constraintName=UK_JKUWUVD56ONTGSUHOGM8UEWRT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_LOCAL_CONSENT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_EXTERNAL_CONSENT, tableName=...		\N	4.25.1	\N	\N	9498304214
 25.0.0-28861-index-creation	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.284481	133	EXECUTED	9:b9acb58ac958d9ada0fe12a5d4794ab1	createIndex indexName=IDX_PERM_TICKET_REQUESTER, tableName=RESOURCE_SERVER_PERM_TICKET; createIndex indexName=IDX_PERM_TICKET_OWNER, tableName=RESOURCE_SERVER_PERM_TICKET		\N	4.25.1	\N	\N	9498304214
+18.0.15-30992-index-consent	keycloak	META-INF/jpa-changelog-18.0.15.xml	2024-09-04 14:56:20.856741	134	EXECUTED	9:80071ede7a05604b1f4906f3bf3b00f0	createIndex indexName=IDX_USCONSENT_SCOPE_ID, tableName=USER_CONSENT_CLIENT_SCOPE		\N	4.25.1	\N	\N	5461780834
 \.
 
 
@@ -894,6 +895,7 @@ rg5y4	24.0.2	1713242627
 l88vu	24.0.3	1713381283
 kq18k	24.0.4	1715976025
 3p70k	25.0.1	1719498304
+nlnj3	25.0.4	1725461781
 \.
 
 

@@ -2880,6 +2880,13 @@ CREATE INDEX idx_usconsent_clscope ON public.user_consent_client_scope USING btr
 
 
 --
+-- Name: idx_usconsent_scope_id; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_usconsent_scope_id ON public.user_consent_client_scope USING btree (scope_id);
+
+
+--
 -- Name: idx_user_attribute; Type: INDEX; Schema: public; Owner: admin
 --
 
