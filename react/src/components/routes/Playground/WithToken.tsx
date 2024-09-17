@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from 'react-oidc-context';
-import { sleep } from '../../../utils';
-import { Alert } from '../../Alert';
+import { sleep } from '../../../utils.ts';
+import { Alert } from '../../Alert.tsx';
 
 export const WithToken: React.FC = () => {
   const auth = useAuth();

@@ -10,23 +10,23 @@
     "preview": "vite preview --port 5173"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@tanstack/react-query": "^5.48.0",
-    "@types/node": "^20.14.9",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@tanstack/react-query": "^5.56.2",
+    "@types/node": "^20.16.5",
     "oidc-client-ts": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-oidc-context": "^3.1.0",
-    "react-router-dom": "^6.24.0",
+    "react-oidc-context": "^3.1.1",
+    "react-router-dom": "^6.26.2",
     "scule": "^1.3.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@types/react": "^18.3.3",
+    "@biomejs/biome": "^1.9.1",
+    "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.5.2",
-    "vite": "^5.3.1"
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6"
   }
 }

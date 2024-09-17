@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { sleep } from '../../../utils';
-import { Alert } from '../../Alert';
+import { sleep } from '../../../utils.ts';
+import { Alert } from '../../Alert.tsx';
 
 export const WithoutToken: React.FC = () => {
   const queryFn = async () => {

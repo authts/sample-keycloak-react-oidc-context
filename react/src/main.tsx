@@ -3,10 +3,10 @@ import React from 'react';
 import reactDom from 'react-dom/client';
 import { AuthProvider } from 'react-oidc-context';
 import { BrowserRouter } from 'react-router-dom';
-import { App } from './components/App';
-import { Layout } from './components/Layout';
-import { ProtectedApp } from './components/ProtectedApp';
-import { onSigninCallback, queryClient, userManager } from './config';
+import { App } from './components/App.tsx';
+import { Layout } from './components/Layout.tsx';
+import { ProtectedApp } from './components/ProtectedApp.tsx';
+import { onSigninCallback, queryClient, userManager } from './config.ts';
 
 // biome-ignore lint/style/noNonNullAssertion: We expect this element to always exist
 reactDom.createRoot(document.getElementById('root')!).render(
