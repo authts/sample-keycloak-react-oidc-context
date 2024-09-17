@@ -1,5 +1,5 @@
 import { useAuth } from 'react-oidc-context';
-import { SimpleTable } from '../SimpleTable';
+import { SimpleTable } from '../SimpleTable.tsx';
 
 interface Row {
   label: string;

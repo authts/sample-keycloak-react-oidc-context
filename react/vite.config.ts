@@ -22,6 +22,7 @@ export default defineConfig(({ command, mode }) => {
             target: env.VITE_API_BASE_URL,
             changeOrigin: true,
             rewrite: (path) => {
+              // biome-ignore lint/performance/useTopLevelRegex: We accept the perf hit
               return path.replace(/^\/api/, '');
             }
           }

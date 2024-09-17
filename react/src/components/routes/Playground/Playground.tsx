@@ -1,5 +1,5 @@
-import { WithToken } from './WithToken';
-import { WithoutToken } from './WithoutToken';
+import { WithToken } from './WithToken.tsx';
+import { WithoutToken } from './WithoutToken.tsx';
 
 export const Playground: React.FC = () => {
   return (

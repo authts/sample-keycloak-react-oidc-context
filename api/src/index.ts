@@ -15,7 +15,7 @@ app.get('/payload', (req, res) => {
 });
 
 const server = app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Express server listening at http://localhost:${port}`);
 });
 
 const signals = ['SIGINT', 'SIGTERM'];
