@@ -170,9 +170,9 @@ fbf6e996-19ff-4bfc-9bd3-f61423721b61	t	f	master-realm	0	f	\N	\N	t	\N	f	04d6226e-
 fdb3ebcc-007f-4d97-875d-c67e4c16fd05	t	f	account	0	t	\N	/realms/master/account/	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_account}	f	client-secret	${authBaseUrl}	\N	\N	t	f	f	f
 ed96f561-820c-410c-8967-085e0fb27005	t	f	account-console	0	t	\N	/realms/master/account/	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_account-console}	f	client-secret	${authBaseUrl}	\N	\N	t	f	f	f
 1b24504b-e5b6-493b-b1e1-7ab4dbbcbcc7	t	f	broker	0	f	\N	\N	t	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_broker}	f	client-secret	\N	\N	\N	t	f	f	f
-40a12ed1-e236-46be-94c7-18f6e3b3cf2b	t	f	security-admin-console	0	t	\N	/admin/master/console/	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_security-admin-console}	f	client-secret	${authAdminUrl}	\N	\N	t	f	f	f
-87ac131c-123c-41cc-b848-9646e95305a7	t	f	admin-cli	0	t	\N	\N	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_admin-cli}	f	client-secret	\N	\N	\N	f	f	t	f
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	t	t	react	0	t	\N		f		f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	-1	t	f		f	client-secret			\N	t	f	t	f
+40a12ed1-e236-46be-94c7-18f6e3b3cf2b	t	t	security-admin-console	0	t	\N	/admin/master/console/	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_security-admin-console}	f	client-secret	${authAdminUrl}	\N	\N	t	f	f	f
+87ac131c-123c-41cc-b848-9646e95305a7	t	t	admin-cli	0	t	\N	\N	f	\N	f	04d6226e-e85e-4251-b423-a3525954ba75	openid-connect	0	f	f	${client_admin-cli}	f	client-secret	\N	\N	\N	f	f	t	f
 \.
 
 
@@ -192,6 +192,8 @@ acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	post.logout.redirect.uris	http://localhost:
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	backchannel.logout.session.required	true
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	backchannel.logout.revoke.offline.tokens	false
 acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	display.on.consent.screen	false
+40a12ed1-e236-46be-94c7-18f6e3b3cf2b	client.use.lightweight.access.token.enabled	true
+87ac131c-123c-41cc-b848-9646e95305a7	client.use.lightweight.access.token.enabled	true
 \.
 
 
@@ -360,62 +362,6 @@ COPY public.client_scope_role_mapping (scope_id, role_id) FROM stdin;
 
 
 --
--- Data for Name: user_session; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.user_session (id, auth_method, ip_address, last_session_refresh, login_username, realm_id, remember_me, started, user_id, user_session_state, broker_session_id, broker_user_id) FROM stdin;
-\.
-
-
---
--- Data for Name: client_session; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_session (id, client_id, redirect_uri, state, "timestamp", session_id, auth_method, realm_id, auth_user_id, current_action) FROM stdin;
-\.
-
-
---
--- Data for Name: client_session_auth_status; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_session_auth_status (authenticator, status, client_session) FROM stdin;
-\.
-
-
---
--- Data for Name: client_session_note; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_session_note (name, value, client_session) FROM stdin;
-\.
-
-
---
--- Data for Name: client_session_prot_mapper; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_session_prot_mapper (protocol_mapper_id, client_session) FROM stdin;
-\.
-
-
---
--- Data for Name: client_session_role; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_session_role (role_id, client_session) FROM stdin;
-\.
-
-
---
--- Data for Name: client_user_session_note; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.client_user_session_note (name, value, client_session) FROM stdin;
-\.
-
-
---
 -- Data for Name: component; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
@@ -565,6 +511,7 @@ f1dc48cb-57f7-400b-ac65-68d329be69f9	27579148-d477-446c-bba7-7252340c6c54
 COPY public.user_entity (id, email, email_constraint, email_verified, enabled, federation_link, first_name, last_name, realm_id, username, created_timestamp, service_account_client_link, not_before) FROM stdin;
 f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	Bruce	Wayne	04d6226e-e85e-4251-b423-a3525954ba75	admin@example.com	1713242628202	\N	0
 2d02276f-b6a4-4c43-90f6-827765a1d799	betty@example.com	betty@example.com	t	t	\N	Betty	Jane	04d6226e-e85e-4251-b423-a3525954ba75	betty@example.com	1713244999966	\N	0
+5fd213b6-69f4-4a83-bc9c-fe0395701f7a	zachary.betz+local@hln.com	zachary.betz+local@hln.com	t	t	\N	jane	doe	04d6226e-e85e-4251-b423-a3525954ba75	zachary.betz+local@hln.com	1729517587719	\N	0
 \.
 
 
@@ -575,6 +522,7 @@ f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	admin@example.com	admin@example.com	t	t	\N	
 COPY public.credential (id, salt, type, user_id, created_date, user_label, secret_data, credential_data, priority) FROM stdin;
 c8932fd5-dabb-4b15-ad85-c31f8559da20	\N	password	2d02276f-b6a4-4c43-90f6-827765a1d799	1713245000180	\N	{"value":"uqvXbTlWHK37Dy+EPPeREuTgvaN2rPcqobewCcuXnQkxSm2X/ubucDxHkuPiJMzpXYhQ2gpedc1uQGg6o2p8uw==","salt":"GTYxDyifTCaMHCytYR3yQw==","additionalParameters":{}}	{"hashIterations":210000,"algorithm":"pbkdf2-sha512","additionalParameters":{}}	10
 79cab082-10c4-4958-a900-7e5449d37073	\N	password	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	1713381368523	My password	{"value":"1XmLHvnqWaOYaahrGSVnVPVQjD64jmV8uKFJMGTkEW8=","salt":"q9xNSv2JuL/C9MxE89swRg==","additionalParameters":{}}	{"hashIterations":5,"algorithm":"argon2","additionalParameters":{"hashLength":["32"],"memory":["7168"],"type":["id"],"version":["1.3"],"parallelism":["1"]}}	10
+743b510b-94ba-4e5b-9b89-dd9fa4a74446	\N	password	5fd213b6-69f4-4a83-bc9c-fe0395701f7a	1729517587760	\N	{"value":"xVN4CNjAM3DGfNp46CXRje31sJNsJ7xzgHqM9ZC4wGk=","salt":"Jc/VAMUrHThD11BdX848cg==","additionalParameters":{}}	{"hashIterations":5,"algorithm":"argon2","additionalParameters":{"hashLength":["32"],"memory":["7168"],"type":["id"],"version":["1.3"],"parallelism":["1"]}}	10
 \.
 
 
@@ -717,6 +665,16 @@ unique-consentuser	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:0
 unique-consentuser-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.279673	132	MARK_RAN	9:b79478aad5adaa1bc428e31563f55e8e	customChange; dropUniqueConstraint constraintName=UK_JKUWUVD56ONTGSUHOGM8UEWRT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_LOCAL_CONSENT, tableName=USER_CONSENT; addUniqueConstraint constraintName=UK_EXTERNAL_CONSENT, tableName=...		\N	4.25.1	\N	\N	9498304214
 25.0.0-28861-index-creation	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 14:25:04.284481	133	EXECUTED	9:b9acb58ac958d9ada0fe12a5d4794ab1	createIndex indexName=IDX_PERM_TICKET_REQUESTER, tableName=RESOURCE_SERVER_PERM_TICKET; createIndex indexName=IDX_PERM_TICKET_OWNER, tableName=RESOURCE_SERVER_PERM_TICKET		\N	4.25.1	\N	\N	9498304214
 18.0.15-30992-index-consent	keycloak	META-INF/jpa-changelog-18.0.15.xml	2024-09-04 14:56:20.856741	134	EXECUTED	9:80071ede7a05604b1f4906f3bf3b00f0	createIndex indexName=IDX_USCONSENT_SCOPE_ID, tableName=USER_CONSENT_CLIENT_SCOPE		\N	4.25.1	\N	\N	5461780834
+26.0.0-org-alias	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.180486	135	EXECUTED	9:6ef7d63e4412b3c2d66ed179159886a4	addColumn tableName=ORG; update tableName=ORG; addNotNullConstraint columnName=ALIAS, tableName=ORG; addUniqueConstraint constraintName=UK_ORG_ALIAS, tableName=ORG		\N	4.29.1	\N	\N	9517474159
+26.0.0-org-group	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.190655	136	EXECUTED	9:da8e8087d80ef2ace4f89d8c5b9ca223	addColumn tableName=KEYCLOAK_GROUP; update tableName=KEYCLOAK_GROUP; addNotNullConstraint columnName=TYPE, tableName=KEYCLOAK_GROUP; customChange		\N	4.29.1	\N	\N	9517474159
+26.0.0-org-indexes	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.229102	137	EXECUTED	9:79b05dcd610a8c7f25ec05135eec0857	createIndex indexName=IDX_ORG_DOMAIN_ORG_ID, tableName=ORG_DOMAIN		\N	4.29.1	\N	\N	9517474159
+26.0.0-org-group-membership	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.233229	138	EXECUTED	9:a6ace2ce583a421d89b01ba2a28dc2d4	addColumn tableName=USER_GROUP_MEMBERSHIP; update tableName=USER_GROUP_MEMBERSHIP; addNotNullConstraint columnName=MEMBERSHIP_TYPE, tableName=USER_GROUP_MEMBERSHIP		\N	4.29.1	\N	\N	9517474159
+31296-persist-revoked-access-tokens	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.239557	139	EXECUTED	9:64ef94489d42a358e8304b0e245f0ed4	createTable tableName=REVOKED_TOKEN; addPrimaryKey constraintName=CONSTRAINT_RT, tableName=REVOKED_TOKEN		\N	4.29.1	\N	\N	9517474159
+31725-index-persist-revoked-access-tokens	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.278456	140	EXECUTED	9:b994246ec2bf7c94da881e1d28782c7b	createIndex indexName=IDX_REV_TOKEN_ON_EXPIRE, tableName=REVOKED_TOKEN		\N	4.29.1	\N	\N	9517474159
+26.0.0-idps-for-login	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.339866	141	EXECUTED	9:51f5fffadf986983d4bd59582c6c1604	addColumn tableName=IDENTITY_PROVIDER; createIndex indexName=IDX_IDP_REALM_ORG, tableName=IDENTITY_PROVIDER; createIndex indexName=IDX_IDP_FOR_LOGIN, tableName=IDENTITY_PROVIDER; customChange		\N	4.29.1	\N	\N	9517474159
+26.0.0-32583-drop-redundant-index-on-client-session	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.362125	142	EXECUTED	9:24972d83bf27317a055d234187bb4af9	dropIndex indexName=IDX_US_SESS_ID_ON_CL_SESS, tableName=OFFLINE_CLIENT_SESSION		\N	4.29.1	\N	\N	9517474159
+26.0.0.32582-remove-tables-user-session-user-session-note-and-client-session	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.370732	143	EXECUTED	9:febdc0f47f2ed241c59e60f58c3ceea5	dropTable tableName=CLIENT_SESSION_ROLE; dropTable tableName=CLIENT_SESSION_NOTE; dropTable tableName=CLIENT_SESSION_PROT_MAPPER; dropTable tableName=CLIENT_SESSION_AUTH_STATUS; dropTable tableName=CLIENT_USER_SESSION_NOTE; dropTable tableName=CLI...		\N	4.29.1	\N	\N	9517474159
+26.0.0-33201-org-redirect-url	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.373431	144	EXECUTED	9:4d0e22b0ac68ebe9794fa9cb752ea660	addColumn tableName=ORG		\N	4.29.1	\N	\N	9517474159
 \.
 
 
@@ -834,7 +792,7 @@ COPY public.federated_user (id, storage_provider_id, realm_id) FROM stdin;
 -- Data for Name: keycloak_group; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.keycloak_group (id, name, parent_group, realm_id) FROM stdin;
+COPY public.keycloak_group (id, name, parent_group, realm_id, type) FROM stdin;
 \.
 
 
@@ -858,7 +816,7 @@ COPY public.group_role_mapping (role_id, group_id) FROM stdin;
 -- Data for Name: identity_provider; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.identity_provider (internal_id, enabled, provider_alias, provider_id, store_token, authenticate_by_default, realm_id, add_token_role, trust_email, first_broker_login_flow_id, post_broker_login_flow_id, provider_display_name, link_only) FROM stdin;
+COPY public.identity_provider (internal_id, enabled, provider_alias, provider_id, store_token, authenticate_by_default, realm_id, add_token_role, trust_email, first_broker_login_flow_id, post_broker_login_flow_id, provider_display_name, link_only, organization_id, hide_on_login) FROM stdin;
 \.
 
 
@@ -896,6 +854,7 @@ l88vu	24.0.3	1713381283
 kq18k	24.0.4	1715976025
 3p70k	25.0.1	1719498304
 nlnj3	25.0.4	1725461781
+d31gi	26.0.1	1729517474
 \.
 
 
@@ -919,7 +878,7 @@ COPY public.offline_user_session (user_session_id, user_id, realm_id, created_on
 -- Data for Name: org; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.org (id, enabled, realm_id, group_id, name, description) FROM stdin;
+COPY public.org (id, enabled, realm_id, group_id, name, description, alias, redirect_url) FROM stdin;
 \.
 
 
@@ -1404,6 +1363,14 @@ COPY public.resource_uris (resource_id, value) FROM stdin;
 
 
 --
+-- Data for Name: revoked_token; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.revoked_token (id, expire) FROM stdin;
+\.
+
+
+--
 -- Data for Name: role_attribute; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
@@ -1489,7 +1456,7 @@ COPY public.user_federation_mapper_config (user_federation_mapper_id, value, nam
 -- Data for Name: user_group_membership; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.user_group_membership (group_id, user_id) FROM stdin;
+COPY public.user_group_membership (group_id, user_id, membership_type) FROM stdin;
 \.
 
 
@@ -1509,14 +1476,7 @@ COPY public.user_role_mapping (role_id, user_id) FROM stdin;
 f1dc48cb-57f7-400b-ac65-68d329be69f9	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
 ab6a028c-b2f8-4aa8-8d8c-95077c182e4d	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
 f1dc48cb-57f7-400b-ac65-68d329be69f9	2d02276f-b6a4-4c43-90f6-827765a1d799
-\.
-
-
---
--- Data for Name: user_session_note; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.user_session_note (user_session, name, value) FROM stdin;
+f1dc48cb-57f7-400b-ac65-68d329be69f9	5fd213b6-69f4-4a83-bc9c-fe0395701f7a
 \.
 
 

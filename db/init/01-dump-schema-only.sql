@@ -279,89 +279,6 @@ CREATE TABLE public.client_scope_role_mapping (
 ALTER TABLE public.client_scope_role_mapping OWNER TO admin;
 
 --
--- Name: client_session; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_session (
-    id character varying(36) NOT NULL,
-    client_id character varying(36),
-    redirect_uri character varying(255),
-    state character varying(255),
-    "timestamp" integer,
-    session_id character varying(36),
-    auth_method character varying(255),
-    realm_id character varying(255),
-    auth_user_id character varying(36),
-    current_action character varying(36)
-);
-
-
-ALTER TABLE public.client_session OWNER TO admin;
-
---
--- Name: client_session_auth_status; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_session_auth_status (
-    authenticator character varying(36) NOT NULL,
-    status integer,
-    client_session character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_session_auth_status OWNER TO admin;
-
---
--- Name: client_session_note; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_session_note (
-    name character varying(255) NOT NULL,
-    value character varying(255),
-    client_session character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_session_note OWNER TO admin;
-
---
--- Name: client_session_prot_mapper; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_session_prot_mapper (
-    protocol_mapper_id character varying(36) NOT NULL,
-    client_session character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_session_prot_mapper OWNER TO admin;
-
---
--- Name: client_session_role; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_session_role (
-    role_id character varying(255) NOT NULL,
-    client_session character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_session_role OWNER TO admin;
-
---
--- Name: client_user_session_note; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.client_user_session_note (
-    name character varying(255) NOT NULL,
-    value character varying(2048),
-    client_session character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_user_session_note OWNER TO admin;
-
---
 -- Name: component; Type: TABLE; Schema: public; Owner: admin
 --
 
@@ -680,7 +597,9 @@ CREATE TABLE public.identity_provider (
     first_broker_login_flow_id character varying(36),
     post_broker_login_flow_id character varying(36),
     provider_display_name character varying(255),
-    link_only boolean DEFAULT false NOT NULL
+    link_only boolean DEFAULT false NOT NULL,
+    organization_id character varying(255),
+    hide_on_login boolean DEFAULT false
 );
 
 
@@ -735,7 +654,8 @@ CREATE TABLE public.keycloak_group (
     id character varying(36) NOT NULL,
     name character varying(255),
     parent_group character varying(36) NOT NULL,
-    realm_id character varying(36)
+    realm_id character varying(36),
+    type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -819,7 +739,9 @@ CREATE TABLE public.org (
     realm_id character varying(255) NOT NULL,
     group_id character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
-    description character varying(4000)
+    description character varying(4000),
+    alias character varying(255) NOT NULL,
+    redirect_url character varying(2048)
 );
 
 
@@ -1224,6 +1146,18 @@ CREATE TABLE public.resource_uris (
 ALTER TABLE public.resource_uris OWNER TO admin;
 
 --
+-- Name: revoked_token; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.revoked_token (
+    id character varying(255) NOT NULL,
+    expire bigint NOT NULL
+);
+
+
+ALTER TABLE public.revoked_token OWNER TO admin;
+
+--
 -- Name: role_attribute; Type: TABLE; Schema: public; Owner: admin
 --
 
@@ -1395,7 +1329,8 @@ ALTER TABLE public.user_federation_provider OWNER TO admin;
 
 CREATE TABLE public.user_group_membership (
     group_id character varying(36) NOT NULL,
-    user_id character varying(36) NOT NULL
+    user_id character varying(36) NOT NULL,
+    membership_type character varying(255) NOT NULL
 );
 
 
@@ -1424,41 +1359,6 @@ CREATE TABLE public.user_role_mapping (
 
 
 ALTER TABLE public.user_role_mapping OWNER TO admin;
-
---
--- Name: user_session; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.user_session (
-    id character varying(36) NOT NULL,
-    auth_method character varying(255),
-    ip_address character varying(255),
-    last_session_refresh integer,
-    login_username character varying(255),
-    realm_id character varying(255),
-    remember_me boolean DEFAULT false NOT NULL,
-    started integer,
-    user_id character varying(255),
-    user_session_state integer,
-    broker_session_id character varying(255),
-    broker_user_id character varying(255)
-);
-
-
-ALTER TABLE public.user_session OWNER TO admin;
-
---
--- Name: user_session_note; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.user_session_note (
-    user_session character varying(36) NOT NULL,
-    name character varying(255) NOT NULL,
-    value character varying(2048)
-);
-
-
-ALTER TABLE public.user_session_note OWNER TO admin;
 
 --
 -- Name: username_login_failure; Type: TABLE; Schema: public; Owner: admin
@@ -1558,14 +1458,6 @@ ALTER TABLE ONLY public.realm_default_groups
 
 ALTER TABLE ONLY public.broker_link
     ADD CONSTRAINT constr_broker_link_pk PRIMARY KEY (identity_provider, user_id);
-
-
---
--- Name: client_user_session_note constr_cl_usr_ses_note; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_user_session_note
-    ADD CONSTRAINT constr_cl_usr_ses_note PRIMARY KEY (client_session, name);
 
 
 --
@@ -1713,22 +1605,6 @@ ALTER TABLE ONLY public.realm
 
 
 --
--- Name: client_session_role constraint_5; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_role
-    ADD CONSTRAINT constraint_5 PRIMARY KEY (client_session, role_id);
-
-
---
--- Name: user_session constraint_57; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.user_session
-    ADD CONSTRAINT constraint_57 PRIMARY KEY (id);
-
-
---
 -- Name: user_federation_provider constraint_5c; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -1737,27 +1613,11 @@ ALTER TABLE ONLY public.user_federation_provider
 
 
 --
--- Name: client_session_note constraint_5e; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_note
-    ADD CONSTRAINT constraint_5e PRIMARY KEY (client_session, name);
-
-
---
 -- Name: client constraint_7; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
 ALTER TABLE ONLY public.client
     ADD CONSTRAINT constraint_7 PRIMARY KEY (id);
-
-
---
--- Name: client_session constraint_8; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session
-    ADD CONSTRAINT constraint_8 PRIMARY KEY (id);
 
 
 --
@@ -1841,14 +1701,6 @@ ALTER TABLE ONLY public.authenticator_config
 
 
 --
--- Name: client_session_auth_status constraint_auth_status_pk; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_auth_status
-    ADD CONSTRAINT constraint_auth_status_pk PRIMARY KEY (client_session, authenticator);
-
-
---
 -- Name: user_role_mapping constraint_c; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -1862,14 +1714,6 @@ ALTER TABLE ONLY public.user_role_mapping
 
 ALTER TABLE ONLY public.composite_role
     ADD CONSTRAINT constraint_composite_role PRIMARY KEY (composite, child_role);
-
-
---
--- Name: client_session_prot_mapper constraint_cs_pmp_pk; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_prot_mapper
-    ADD CONSTRAINT constraint_cs_pmp_pk PRIMARY KEY (client_session, protocol_mapper_id);
 
 
 --
@@ -2153,6 +1997,14 @@ ALTER TABLE ONLY public.role_attribute
 
 
 --
+-- Name: revoked_token constraint_rt; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.revoked_token
+    ADD CONSTRAINT constraint_rt PRIMARY KEY (id);
+
+
+--
 -- Name: user_attribute constraint_user_attribute_pk; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -2166,14 +2018,6 @@ ALTER TABLE ONLY public.user_attribute
 
 ALTER TABLE ONLY public.user_group_membership
     ADD CONSTRAINT constraint_user_group PRIMARY KEY (group_id, user_id);
-
-
---
--- Name: user_session_note constraint_usn_pk; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.user_session_note
-    ADD CONSTRAINT constraint_usn_pk PRIMARY KEY (user_session, name);
 
 
 --
@@ -2337,6 +2181,14 @@ ALTER TABLE ONLY public.user_consent
 
 
 --
+-- Name: org uk_org_alias; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.org
+    ADD CONSTRAINT uk_org_alias UNIQUE (realm_id, alias);
+
+
+--
 -- Name: org uk_org_group; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -2450,13 +2302,6 @@ CREATE INDEX idx_client_id ON public.client USING btree (client_id);
 --
 
 CREATE INDEX idx_client_init_acc_realm ON public.client_initial_access USING btree (realm_id);
-
-
---
--- Name: idx_client_session_session; Type: INDEX; Schema: public; Owner: admin
---
-
-CREATE INDEX idx_client_session_session ON public.client_session USING btree (session_id);
 
 
 --
@@ -2677,6 +2522,20 @@ CREATE INDEX idx_ident_prov_realm ON public.identity_provider USING btree (realm
 
 
 --
+-- Name: idx_idp_for_login; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_idp_for_login ON public.identity_provider USING btree (realm_id, enabled, link_only, hide_on_login, organization_id);
+
+
+--
+-- Name: idx_idp_realm_org; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_idp_realm_org ON public.identity_provider USING btree (realm_id, organization_id);
+
+
+--
 -- Name: idx_keycloak_role_client; Type: INDEX; Schema: public; Owner: admin
 --
 
@@ -2709,6 +2568,13 @@ CREATE INDEX idx_offline_uss_by_last_session_refresh ON public.offline_user_sess
 --
 
 CREATE INDEX idx_offline_uss_by_user ON public.offline_user_session USING btree (user_id, realm_id, offline_flag);
+
+
+--
+-- Name: idx_org_domain_org_id; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_org_domain_org_id ON public.org_domain USING btree (org_id);
 
 
 --
@@ -2831,6 +2697,13 @@ CREATE INDEX idx_res_srv_scope_res_srv ON public.resource_server_scope USING btr
 
 
 --
+-- Name: idx_rev_token_on_expire; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX idx_rev_token_on_expire ON public.revoked_token USING btree (expire);
+
+
+--
 -- Name: idx_role_attribute; Type: INDEX; Schema: public; Owner: admin
 --
 
@@ -2863,13 +2736,6 @@ CREATE INDEX idx_scope_policy_policy ON public.scope_policy USING btree (policy_
 --
 
 CREATE INDEX idx_update_time ON public.migration_model USING btree (update_time);
-
-
---
--- Name: idx_us_sess_id_on_cl_sess; Type: INDEX; Schema: public; Owner: admin
---
-
-CREATE INDEX idx_us_sess_id_on_cl_sess ON public.offline_client_session USING btree (user_session_id);
 
 
 --
@@ -2992,14 +2858,6 @@ CREATE INDEX user_attr_long_values_lower_case ON public.user_attribute USING btr
 
 
 --
--- Name: client_session_auth_status auth_status_constraint; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_auth_status
-    ADD CONSTRAINT auth_status_constraint FOREIGN KEY (client_session) REFERENCES public.client_session(id);
-
-
---
 -- Name: identity_provider fk2b4ebc52ae5c3b34; Type: FK CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -3032,30 +2890,6 @@ ALTER TABLE ONLY public.client_node_registrations
 
 
 --
--- Name: client_session_note fk5edfb00ff51c2736; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_note
-    ADD CONSTRAINT fk5edfb00ff51c2736 FOREIGN KEY (client_session) REFERENCES public.client_session(id);
-
-
---
--- Name: user_session_note fk5edfb00ff51d3472; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.user_session_note
-    ADD CONSTRAINT fk5edfb00ff51d3472 FOREIGN KEY (user_session) REFERENCES public.user_session(id);
-
-
---
--- Name: client_session_role fk_11b7sgqw18i532811v7o2dv76; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_role
-    ADD CONSTRAINT fk_11b7sgqw18i532811v7o2dv76 FOREIGN KEY (client_session) REFERENCES public.client_session(id);
-
-
---
 -- Name: redirect_uris fk_1burs8pb4ouj97h5wuppahv9f; Type: FK CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -3069,14 +2903,6 @@ ALTER TABLE ONLY public.redirect_uris
 
 ALTER TABLE ONLY public.user_federation_provider
     ADD CONSTRAINT fk_1fj32f6ptolw2qy60cd8n01e8 FOREIGN KEY (realm_id) REFERENCES public.realm(id);
-
-
---
--- Name: client_session_prot_mapper fk_33a8sgqw18i532811v7o2dk89; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session_prot_mapper
-    ADD CONSTRAINT fk_33a8sgqw18i532811v7o2dk89 FOREIGN KEY (client_session) REFERENCES public.client_session(id);
 
 
 --
@@ -3176,14 +3002,6 @@ ALTER TABLE ONLY public.authenticator_config
 
 
 --
--- Name: client_session fk_b4ao2vcvat6ukau74wbwtfqo1; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_session
-    ADD CONSTRAINT fk_b4ao2vcvat6ukau74wbwtfqo1 FOREIGN KEY (session_id) REFERENCES public.user_session(id);
-
-
---
 -- Name: user_role_mapping fk_c4fqv34p1mbylloxang7b1q3l; Type: FK CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -3205,14 +3023,6 @@ ALTER TABLE ONLY public.client_scope_attributes
 
 ALTER TABLE ONLY public.client_scope_role_mapping
     ADD CONSTRAINT fk_cl_scope_rm_scope FOREIGN KEY (scope_id) REFERENCES public.client_scope(id);
-
-
---
--- Name: client_user_session_note fk_cl_usr_ses_note; Type: FK CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.client_user_session_note
-    ADD CONSTRAINT fk_cl_usr_ses_note FOREIGN KEY (client_session) REFERENCES public.client_session(id);
 
 
 --
