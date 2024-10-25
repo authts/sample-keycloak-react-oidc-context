@@ -9,10 +9,10 @@ Minimal, reproducible example for Keycloak + React.
 - [Why](#why)
 - [Setup](#setup)
   * [Docker Compose](#docker-compose)
-  * [React app](#react-app)
+  * [OPTIONAL: Run React app outside of Docker Compose](#optional-run-react-app-outside-of-docker-compose)
 - [Config](#config)
 - [Links](#links)
-  * [React app](#react-app-1)
+  * [React app](#react-app)
   * [Keycloak account console](#keycloak-account-console)
   * [Keycloak admin console](#keycloak-admin-console)
   * [Mailhog UI](#mailhog-ui)
@@ -44,9 +44,9 @@ So, I thought it'd be cool to make a little project that glues these tools toget
 
 ## Setup
 
-In one terminal, run the Postgres database, Keycloak server, Mailhog server, and Express API via Docker Compose.
+In one terminal, run the Postgres database, Keycloak server, Mailhog server, Express API, and React app via Docker Compose.
 
-In another terminal, run the React app.
+**OPTIONALLY**, in another terminal, you may run the React app outside of Docker Compose.
 
 ### Docker Compose
 
@@ -63,12 +63,26 @@ In another terminal, run the React app.
 
         docker compose up
 
-### React app
+1. Wait until you see a message from the Keycloak server like this: _Running the server in development mode. DO NOT use this configuration in production._
+1. See [links](#links) for username and password
+
+### OPTIONAL: Run React app outside of Docker Compose
+
+1. Stop the React app container
+
+        docker compose stop react
 
 1. Install [Node.js](https://nodejs.org/en)
 1. Change to `react` folder
 
         cd react
+
+1. Create file `.env.local` with contents
+
+        VITE_PORT=5173
+        VITE_AUTHORITY=http://localhost:8080/realms/master
+        VITE_CLIENT_ID=react
+        VITE_API_BASE_URL=http://localhost:5174
 
 1. Install packages
 
@@ -82,9 +96,7 @@ In another terminal, run the React app.
 
 ## Config
 
-The Docker Compose config should work as-is. If you need to customize it, like changing what port a service runs on, then edit file `.env`
-
-The React config should work as-is as well. If you need to customize it, then edit file `react/.env`
+The Docker Compose config should work as-is. If you need to customize it, then edit file `.env`
 
 ## Links
 
