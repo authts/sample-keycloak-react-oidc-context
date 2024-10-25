@@ -313,3 +313,15 @@ Places where this project has been shared.
 ## History
 
 This repo originally lived at [zach-betz-hln/mre-keycloak-react](https://github.com/zach-betz-hln/mre-keycloak-react). For context, see this [issue](https://github.com/authts/react-oidc-context/issues/1208).
+
+## Contributing
+
+1. Create a branch from `main`, or a fork of this repo
+1. Make your changes
+1. Run through the _Setup_ steps in this doc from scratch and confirm everything works
+1. Increment the [semantic version](https://docs.npmjs.com/about-semantic-versioning). `<semver>` should be one of: `major` | `minor` | `patch`
+
+        npm --no-git-tag-version version <semver>
+
+1. Update `CHANGELOG.md` with a new section
+1. PR your changes to be reviewed and merged
