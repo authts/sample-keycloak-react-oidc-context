@@ -1,3 +1,7 @@
+## 1.2.0 (2024-10-29)
+
+- Add screenshots to readme
+
 ## 1.1.0 (2024-10-29)
 
 - Add support for running the React app in Docker Compose, and keep support for running it locally
