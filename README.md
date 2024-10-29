@@ -6,6 +6,10 @@ Minimal, reproducible example for Keycloak + React.
 
 <!-- toc -->
 
+- [Screenshots](#screenshots)
+  * [Login](#login)
+  * [Home](#home)
+  * [Playground](#playground)
 - [Why](#why)
 - [Setup](#setup)
   * [Docker Compose](#docker-compose)
@@ -25,14 +29,29 @@ Minimal, reproducible example for Keycloak + React.
   * [Making an API request](#making-an-api-request)
 - [Seeded data](#seeded-data)
   * [Clients](#clients)
-  * [Login](#login)
+  * [Login](#login-1)
   * [Tokens](#tokens)
   * [Email](#email)
 - [Sharing](#sharing)
 - [Disclaimers](#disclaimers)
 - [History](#history)
+- [Contributing](#contributing)
 
 <!-- tocstop -->
+
+## Screenshots
+
+### Login
+
+![](assets/screencapture-login.png)
+
+### Home
+
+![](assets/screencapture-home.png)
+
+### Playground
+
+![](assets/screencapture-playground.png)
 
 ## Why
 
