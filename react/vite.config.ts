@@ -15,7 +15,8 @@ export default defineConfig(({ command, mode }) => {
     return {
       ...commonConfig,
       server: {
-        open: true,
+        open: false,
+        port: Number(env.VITE_PORT),
         strictPort: true,
         proxy: {
           '/api': {

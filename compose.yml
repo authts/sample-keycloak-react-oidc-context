@@ -29,9 +29,24 @@ services:
       - .env
 
   api:
+    depends_on:
+      - kc
     build:
       context: ./api
     ports:
       - ${API_PORT}:${API_PORT}
     env_file:
       - .env
+
+  react:
+    depends_on:
+      - kc
+      - api
+    build:
+      context: ./react
+    ports:
+      - ${VITE_PORT}:${VITE_PORT}
+    env_file:
+      - .env
+    volumes:
+      - ./react/src:/app/src:rw

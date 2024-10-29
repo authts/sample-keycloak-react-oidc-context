@@ -1,3 +1,4 @@
+.env.local
 .eslintcache
 dist
 node_modules
