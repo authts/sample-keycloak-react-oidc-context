@@ -7,9 +7,6 @@ Minimal, reproducible example for Keycloak + React.
 <!-- toc -->
 
 - [Screenshots](#screenshots)
-  * [Login](#login)
-  * [Home](#home)
-  * [Playground](#playground)
 - [Why](#why)
 - [Setup](#setup)
   * [Docker Compose](#docker-compose)
@@ -29,7 +26,7 @@ Minimal, reproducible example for Keycloak + React.
   * [Making an API request](#making-an-api-request)
 - [Seeded data](#seeded-data)
   * [Clients](#clients)
-  * [Login](#login-1)
+  * [Login](#login)
   * [Tokens](#tokens)
   * [Email](#email)
 - [Sharing](#sharing)
@@ -41,17 +38,20 @@ Minimal, reproducible example for Keycloak + React.
 
 ## Screenshots
 
-### Login
+<details>
 
+<summary>Screenshots</summary>
+
+**Login**:
 ![](assets/screencapture-login.png)
 
-### Home
-
+**Home**:
 ![](assets/screencapture-home.png)
 
-### Playground
-
+**Playground**:
 ![](assets/screencapture-playground.png)
+
+</details>
 
 ## Why
 
@@ -87,6 +87,10 @@ In one terminal, run the Postgres database, Keycloak server, Mailhog server, Exp
 
 ### OPTIONAL: Run React app outside of Docker Compose
 
+<details>
+
+<summary>Optional steps</summary>
+
 1. Stop the React app container
 
         docker compose stop react
@@ -112,6 +116,8 @@ In one terminal, run the Postgres database, Keycloak server, Mailhog server, Exp
         npm run dev
 
 1. See [links](#links) for username and password
+
+</details>
 
 ## Config
 
