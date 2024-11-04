@@ -1,3 +1,8 @@
+## 1.3.0 (2024-11-04)
+
+- Upgrade Keycloak to 26.0.4
+- Move screenshots and optional React steps within `details` el
+
 ## 1.2.0 (2024-10-29)
 
 - Add screenshots to readme
