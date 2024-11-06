@@ -301,7 +301,7 @@ I've copied the request _query params_ and _form data_ directly from DevTools fo
 
 The `db/init` folder contains SQL which is copied into the Postgres image and runs on container startup.
 
-I didn't write this SQL by hand. Instead, I customized the `master` realm a tad, then dumped the data. See script `task_dump_kc_data.sh`
+I didn't write this SQL by hand. Instead, I customized the `master` realm a tad, then dumped the data. See `compose.jobs.yml`
 
 ### Clients
 
@@ -356,6 +356,10 @@ This repo originally lived at [zach-betz-hln/mre-keycloak-react](https://github.
 1. Create a branch from `main`, or a fork of this repo
 1. Make your changes
 1. Run through the _Setup_ steps in this doc from scratch and confirm everything works
+1. Run the dump job
+
+        docker compose -f compose.yml -f compose.jobs.yml run dump
+
 1. Increment the [semantic version](https://docs.npmjs.com/about-semantic-versioning). `<semver>` should be one of: `major` | `minor` | `patch`
 
         npm --no-git-tag-version version <semver>

@@ -1,0 +1,21 @@
+services:
+  dump:
+    image: postgres:16.4-bookworm
+    shm_size: 128mb
+    env_file:
+      - ./.env 
+    environment:
+      - PGHOST=${KC_DB_URL_HOST}
+      - PGPORT=${KC_DB_URL_PORT}
+      - PGDATABASE=${KC_DB_URL_DATABASE}
+      - PGUSER=${KC_DB_USERNAME}
+      - PGPASSWORD=${KC_DB_PASSWORD}
+    volumes:
+      - ./db/init:/db/init
+    command: >
+      sh -c '
+        echo "Dumping schema..." &&
+        pg_dump --schema-only --file /db/init/01-dump-schema-only.sql &&
+        echo "Dumping data..." &&
+        pg_dump --data-only --file /db/init/02-dump-data-only.sql
+      '

@@ -1,2 +1,2 @@
-FROM postgres:16.2-bookworm
+FROM postgres:16.4-bookworm
 COPY init/*.sql /docker-entrypoint-initdb.d/

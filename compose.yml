@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     env_file:
-      - .env
+      - ./.env 
 
   kc:
     depends_on:
@@ -16,7 +16,7 @@ services:
     ports:
       - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
     env_file:
-      - .env
+      - ./.env 
 
   mailhog:
     depends_on:
@@ -26,7 +26,7 @@ services:
     ports:
       - ${MH_UI_BIND_ADDR_PORT}:${MH_UI_BIND_ADDR_PORT}
     env_file:
-      - .env
+      - ./.env 
 
   api:
     depends_on:
@@ -36,7 +36,7 @@ services:
     ports:
       - ${API_PORT}:${API_PORT}
     env_file:
-      - .env
+      - ./.env 
 
   react:
     depends_on:
@@ -47,6 +47,6 @@ services:
     ports:
       - ${VITE_PORT}:${VITE_PORT}
     env_file:
-      - .env
+      - ./.env 
     volumes:
       - ./react/src:/app/src:rw

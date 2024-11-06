@@ -1,3 +1,10 @@
+## 1.5.0 (2024-11-06)
+
+- Move `task_dump_kc_data.sh` to `compose.jobs.yml`
+- Upgrade `postgres` image from `16.2-bookworm` to `16.4-bookworm`
+- Specific current dir for `env_file` value, like `./.env`
+- Regen dump files in dir `db/init`
+
 ## 1.4.0 (2024-11-06)
 
 - Upgrade Keycloak to 26.0.5
