@@ -1,3 +1,7 @@
+## 1.4.0 (2024-11-06)
+
+- Upgrade Keycloak to 26.0.5
+
 ## 1.3.0 (2024-11-04)
 
 - Upgrade Keycloak to 26.0.4
