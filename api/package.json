@@ -6,7 +6,7 @@
     "check": "biome check --write --unsafe ."
   },
   "dependencies": {
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "jose": "^5.9.6"
   },
   "devDependencies": {
