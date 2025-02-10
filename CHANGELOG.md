@@ -1,3 +1,7 @@
+## 1.6.0 (2025-02-10)
+
+- Upgrade deps for react project
+
 ## 1.5.0 (2024-11-06)
 
 - Move `task_dump_kc_data.sh` to `compose.jobs.yml`
