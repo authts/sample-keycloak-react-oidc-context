@@ -20,7 +20,7 @@ SET row_security = off;
 -- Data for Name: admin_event_entity; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.admin_event_entity (id, admin_event_time, realm_id, operation_type, auth_realm_id, auth_client_id, auth_user_id, ip_address, resource_path, representation, error, resource_type) FROM stdin;
+COPY public.admin_event_entity (id, admin_event_time, realm_id, operation_type, auth_realm_id, auth_client_id, auth_user_id, ip_address, resource_path, representation, error, resource_type, details_json) FROM stdin;
 \.
 
 
@@ -237,6 +237,7 @@ f95d737d-89d0-446b-a1e3-1908c7850244	email	04d6226e-e85e-4251-b423-a3525954ba75	
 5e48374c-2800-4a69-a617-12c7f370f693	microprofile-jwt	04d6226e-e85e-4251-b423-a3525954ba75	Microprofile - JWT built-in scope	openid-connect
 27c41cc1-b460-4854-b815-ace3b602a66f	acr	04d6226e-e85e-4251-b423-a3525954ba75	OpenID Connect scope for add acr (authentication context class reference) to the token	openid-connect
 2b3aa381-13b4-47f0-9d9c-65d8d770b053	basic	04d6226e-e85e-4251-b423-a3525954ba75	OpenID Connect scope for add all basic claims to the token	openid-connect
+4ae43a39-c607-4116-9c72-494cad9dff19	service_account	04d6226e-e85e-4251-b423-a3525954ba75	Specific scope for a client enabled for service accounts	openid-connect
 \.
 
 
@@ -273,6 +274,8 @@ f95d737d-89d0-446b-a1e3-1908c7850244	true	include.in.token.scope
 27c41cc1-b460-4854-b815-ace3b602a66f	false	include.in.token.scope
 2b3aa381-13b4-47f0-9d9c-65d8d770b053	false	display.on.consent.screen
 2b3aa381-13b4-47f0-9d9c-65d8d770b053	false	include.in.token.scope
+4ae43a39-c607-4116-9c72-494cad9dff19	false	display.on.consent.screen
+4ae43a39-c607-4116-9c72-494cad9dff19	false	include.in.token.scope
 \.
 
 
@@ -675,6 +678,13 @@ unique-consentuser-mysql	keycloak	META-INF/jpa-changelog-25.0.0.xml	2024-06-27 1
 26.0.0-32583-drop-redundant-index-on-client-session	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.362125	142	EXECUTED	9:24972d83bf27317a055d234187bb4af9	dropIndex indexName=IDX_US_SESS_ID_ON_CL_SESS, tableName=OFFLINE_CLIENT_SESSION		\N	4.29.1	\N	\N	9517474159
 26.0.0.32582-remove-tables-user-session-user-session-note-and-client-session	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.370732	143	EXECUTED	9:febdc0f47f2ed241c59e60f58c3ceea5	dropTable tableName=CLIENT_SESSION_ROLE; dropTable tableName=CLIENT_SESSION_NOTE; dropTable tableName=CLIENT_SESSION_PROT_MAPPER; dropTable tableName=CLIENT_SESSION_AUTH_STATUS; dropTable tableName=CLIENT_USER_SESSION_NOTE; dropTable tableName=CLI...		\N	4.29.1	\N	\N	9517474159
 26.0.0-33201-org-redirect-url	keycloak	META-INF/jpa-changelog-26.0.0.xml	2024-10-21 13:31:14.373431	144	EXECUTED	9:4d0e22b0ac68ebe9794fa9cb752ea660	addColumn tableName=ORG		\N	4.29.1	\N	\N	9517474159
+25.0.0-28265-index-cleanup-uss-createdon	keycloak	META-INF/jpa-changelog-25.0.0.xml	2025-02-10 20:03:18.543877	145	MARK_RAN	9:78ab4fc129ed5e8265dbcc3485fba92f	dropIndex indexName=IDX_OFFLINE_USS_CREATEDON, tableName=OFFLINE_USER_SESSION		\N	4.29.1	\N	\N	9217798530
+25.0.0-28265-index-cleanup-uss-preload	keycloak	META-INF/jpa-changelog-25.0.0.xml	2025-02-10 20:03:18.550529	146	MARK_RAN	9:de5f7c1f7e10994ed8b62e621d20eaab	dropIndex indexName=IDX_OFFLINE_USS_PRELOAD, tableName=OFFLINE_USER_SESSION		\N	4.29.1	\N	\N	9217798530
+25.0.0-28265-index-cleanup-uss-by-usersess	keycloak	META-INF/jpa-changelog-25.0.0.xml	2025-02-10 20:03:18.554606	147	MARK_RAN	9:6eee220d024e38e89c799417ec33667f	dropIndex indexName=IDX_OFFLINE_USS_BY_USERSESS, tableName=OFFLINE_USER_SESSION		\N	4.29.1	\N	\N	9217798530
+25.0.0-28265-index-cleanup-css-preload	keycloak	META-INF/jpa-changelog-25.0.0.xml	2025-02-10 20:03:18.558767	148	MARK_RAN	9:5411d2fb2891d3e8d63ddb55dfa3c0c9	dropIndex indexName=IDX_OFFLINE_CSS_PRELOAD, tableName=OFFLINE_CLIENT_SESSION		\N	4.29.1	\N	\N	9217798530
+29399-jdbc-ping-default	keycloak	META-INF/jpa-changelog-26.1.0.xml	2025-02-10 20:03:18.570362	149	EXECUTED	9:007dbe99d7203fca403b89d4edfdf21e	createTable tableName=JGROUPS_PING; addPrimaryKey constraintName=CONSTRAINT_JGROUPS_PING, tableName=JGROUPS_PING		\N	4.29.1	\N	\N	9217798530
+26.1.0-34013	keycloak	META-INF/jpa-changelog-26.1.0.xml	2025-02-10 20:03:18.574789	150	EXECUTED	9:e6b686a15759aef99a6d758a5c4c6a26	addColumn tableName=ADMIN_EVENT_ENTITY		\N	4.29.1	\N	\N	9217798530
+26.1.0-34380	keycloak	META-INF/jpa-changelog-26.1.0.xml	2025-02-10 20:03:18.578126	151	EXECUTED	9:ac8b9edb7c2b6c17a1c7a11fcf5ccf01	dropTable tableName=USERNAME_LOGIN_FAILURE		\N	4.29.1	\N	\N	9217798530
 \.
 
 
@@ -845,6 +855,14 @@ COPY public.idp_mapper_config (idp_mapper_id, value, name) FROM stdin;
 
 
 --
+-- Data for Name: jgroups_ping; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.jgroups_ping (address, name, cluster_name, ip, coord) FROM stdin;
+\.
+
+
+--
 -- Data for Name: migration_model; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
@@ -858,6 +876,7 @@ d31gi	26.0.1	1729517474
 e4upm	26.0.2	1729776999
 v11be	26.0.4	1730737499
 r40d9	26.0.5	1730915461
+lzwmp	26.1.1	1739217799
 \.
 
 
@@ -867,7 +886,7 @@ r40d9	26.0.5	1730915461
 
 COPY public.offline_client_session (user_session_id, client_id, offline_flag, "timestamp", data, client_storage_provider, external_client_id, version) FROM stdin;
 cada6eb1-78e3-4404-afd1-0ec7b3f76ddf	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739210148	{"authMethod":"openid-connect","redirectUri":"http://localhost:5173/","notes":{"clientId":"acc4f3dc-25c9-4716-bfa5-cde9f19c8c32","scope":"openid","userSessionStartedAt":"1739210148","iss":"http://localhost:8080/realms/master","startedAt":"1739210148","response_type":"code","level-of-authentication":"-1","code_challenge_method":"S256","redirect_uri":"http://localhost:5173/","state":"7d0bcbb91f3a4618a50331012f959ca8","code_challenge":"XMyIRBrsXvG32ajLm6v9j1U1-DIJdBwZInfJulBTyus"}}	local	local	0
-a08655a1-53ea-45cd-9889-36b3411e0567	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739217305	{"authMethod":"openid-connect","redirectUri":"http://localhost:5173/","notes":{"clientId":"acc4f3dc-25c9-4716-bfa5-cde9f19c8c32","scope":"openid","userSessionStartedAt":"1739217305","iss":"http://localhost:8080/realms/master","startedAt":"1739217305","response_type":"code","level-of-authentication":"-1","code_challenge_method":"S256","redirect_uri":"http://localhost:5173/","state":"cc21bb5942bc489e867282979b972cc6","code_challenge":"CqRpzt4Ft_ssvbbdJh3WRt6DZIbDAu3-vzecMJUKAjE"}}	local	local	0
+8a5e40da-b47d-4866-b2a1-c7db9fa91ffd	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739217905	{"authMethod":"openid-connect","redirectUri":"http://localhost:5173/","notes":{"clientId":"acc4f3dc-25c9-4716-bfa5-cde9f19c8c32","scope":"openid","userSessionStartedAt":"1739217905","iss":"http://localhost:8080/realms/master","startedAt":"1739217905","response_type":"code","level-of-authentication":"-1","code_challenge_method":"S256","redirect_uri":"http://localhost:5173/","state":"e235feff0c2942deb88b34245749e252","code_challenge":"Bboul-BFtFDFLLtVqHXFJ0y0CNT4rnvN8AX-bv88ADU"}}	local	local	0
 \.
 
 
@@ -877,7 +896,7 @@ a08655a1-53ea-45cd-9889-36b3411e0567	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739
 
 COPY public.offline_user_session (user_session_id, user_id, realm_id, created_on, offline_flag, data, last_session_refresh, broker_session_id, version) FROM stdin;
 cada6eb1-78e3-4404-afd1-0ec7b3f76ddf	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	04d6226e-e85e-4251-b423-a3525954ba75	1739210148	0	{"ipAddress":"172.21.0.1","authMethod":"openid-connect","rememberMe":false,"started":0,"notes":{"KC_DEVICE_NOTE":"eyJpcEFkZHJlc3MiOiIxNzIuMjEuMC4xIiwib3MiOiJNYWMgT1MgWCIsIm9zVmVyc2lvbiI6IjEwLjE1LjciLCJicm93c2VyIjoiQ2hyb21lLzEzMi4wLjAiLCJkZXZpY2UiOiJNYWMiLCJsYXN0QWNjZXNzIjowLCJtb2JpbGUiOmZhbHNlfQ==","AUTH_TIME":"1739210148","authenticators-completed":"{\\"0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8\\":1739210148}"},"state":"LOGGED_IN"}	1739210148	\N	0
-a08655a1-53ea-45cd-9889-36b3411e0567	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	04d6226e-e85e-4251-b423-a3525954ba75	1739217305	0	{"ipAddress":"172.21.0.1","authMethod":"openid-connect","rememberMe":false,"started":0,"notes":{"KC_DEVICE_NOTE":"eyJpcEFkZHJlc3MiOiIxNzIuMjEuMC4xIiwib3MiOiJNYWMgT1MgWCIsIm9zVmVyc2lvbiI6IjEwLjE1LjciLCJicm93c2VyIjoiQ2hyb21lLzEzMi4wLjAiLCJkZXZpY2UiOiJNYWMiLCJsYXN0QWNjZXNzIjowLCJtb2JpbGUiOmZhbHNlfQ==","AUTH_TIME":"1739217305","authenticators-completed":"{\\"0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8\\":1739217305}"},"state":"LOGGED_IN"}	1739217305	\N	0
+8a5e40da-b47d-4866-b2a1-c7db9fa91ffd	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	04d6226e-e85e-4251-b423-a3525954ba75	1739217905	0	{"ipAddress":"172.21.0.1","authMethod":"openid-connect","rememberMe":false,"started":0,"notes":{"KC_DEVICE_NOTE":"eyJpcEFkZHJlc3MiOiIxNzIuMjEuMC4xIiwib3MiOiJNYWMgT1MgWCIsIm9zVmVyc2lvbiI6IjEwLjE1LjciLCJicm93c2VyIjoiQ2hyb21lLzEzMi4wLjAiLCJkZXZpY2UiOiJNYWMiLCJsYXN0QWNjZXNzIjowLCJtb2JpbGUiOmZhbHNlfQ==","AUTH_TIME":"1739217905","authenticators-completed":"{\\"0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8\\":1739217905}"},"state":"LOGGED_IN"}	1739217905	\N	0
 \.
 
 
@@ -941,6 +960,9 @@ b0b60267-57eb-44c6-a7d6-3e7005f8a331	groups	openid-connect	oidc-usermodel-realm-
 a5636c67-39c5-468e-9603-9b6a38bb1509	acr loa level	openid-connect	oidc-acr-mapper	\N	27c41cc1-b460-4854-b815-ace3b602a66f
 64fd7629-8135-4bf5-bd7d-1c53c368d7cb	auth_time	openid-connect	oidc-usersessionmodel-note-mapper	\N	2b3aa381-13b4-47f0-9d9c-65d8d770b053
 534a2197-3e3f-4dc1-85b7-e83ce44bfe13	sub	openid-connect	oidc-sub-mapper	\N	2b3aa381-13b4-47f0-9d9c-65d8d770b053
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	Client ID	openid-connect	oidc-usersessionmodel-note-mapper	\N	4ae43a39-c607-4116-9c72-494cad9dff19
+7626b0ac-2d5d-4265-b192-2fae02620545	Client Host	openid-connect	oidc-usersessionmodel-note-mapper	\N	4ae43a39-c607-4116-9c72-494cad9dff19
+fe693275-d5f3-44db-b68e-dfce905db86a	Client IP Address	openid-connect	oidc-usersessionmodel-note-mapper	\N	4ae43a39-c607-4116-9c72-494cad9dff19
 \.
 
 
@@ -1133,6 +1155,24 @@ a5636c67-39c5-468e-9603-9b6a38bb1509	true	access.token.claim
 64fd7629-8135-4bf5-bd7d-1c53c368d7cb	true	access.token.claim
 64fd7629-8135-4bf5-bd7d-1c53c368d7cb	auth_time	claim.name
 64fd7629-8135-4bf5-bd7d-1c53c368d7cb	long	jsonType.label
+7626b0ac-2d5d-4265-b192-2fae02620545	clientHost	user.session.note
+7626b0ac-2d5d-4265-b192-2fae02620545	true	introspection.token.claim
+7626b0ac-2d5d-4265-b192-2fae02620545	true	id.token.claim
+7626b0ac-2d5d-4265-b192-2fae02620545	true	access.token.claim
+7626b0ac-2d5d-4265-b192-2fae02620545	clientHost	claim.name
+7626b0ac-2d5d-4265-b192-2fae02620545	String	jsonType.label
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	client_id	user.session.note
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	true	introspection.token.claim
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	true	id.token.claim
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	true	access.token.claim
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	client_id	claim.name
+8302d4bb-9448-4b2c-84ea-2deedd1e4061	String	jsonType.label
+fe693275-d5f3-44db-b68e-dfce905db86a	clientAddress	user.session.note
+fe693275-d5f3-44db-b68e-dfce905db86a	true	introspection.token.claim
+fe693275-d5f3-44db-b68e-dfce905db86a	true	id.token.claim
+fe693275-d5f3-44db-b68e-dfce905db86a	true	access.token.claim
+fe693275-d5f3-44db-b68e-dfce905db86a	clientAddress	claim.name
+fe693275-d5f3-44db-b68e-dfce905db86a	String	jsonType.label
 \.
 
 
@@ -1484,14 +1524,6 @@ f1dc48cb-57f7-400b-ac65-68d329be69f9	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
 ab6a028c-b2f8-4aa8-8d8c-95077c182e4d	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1
 f1dc48cb-57f7-400b-ac65-68d329be69f9	2d02276f-b6a4-4c43-90f6-827765a1d799
 f1dc48cb-57f7-400b-ac65-68d329be69f9	5fd213b6-69f4-4a83-bc9c-fe0395701f7a
-\.
-
-
---
--- Data for Name: username_login_failure; Type: TABLE DATA; Schema: public; Owner: admin
---
-
-COPY public.username_login_failure (realm_id, username, failed_login_not_before, last_failure, last_ip_failure, num_failures) FROM stdin;
 \.
 
 
