@@ -1,3 +1,7 @@
+## 1.8.0 (2025-02-10)
+
+- Upgrade Keycloak to 26.1.1
+
 ## 1.7.0 (2025-02-10)
 
 - Upgrade deps for api project

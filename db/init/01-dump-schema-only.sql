@@ -36,7 +36,8 @@ CREATE TABLE public.admin_event_entity (
     resource_path character varying(2550),
     representation text,
     error character varying(255),
-    resource_type character varying(64)
+    resource_type character varying(64),
+    details_json text
 );
 
 
@@ -645,6 +646,21 @@ CREATE TABLE public.idp_mapper_config (
 
 
 ALTER TABLE public.idp_mapper_config OWNER TO admin;
+
+--
+-- Name: jgroups_ping; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.jgroups_ping (
+    address character varying(200) NOT NULL,
+    name character varying(200),
+    cluster_name character varying(200) NOT NULL,
+    ip character varying(200) NOT NULL,
+    coord boolean
+);
+
+
+ALTER TABLE public.jgroups_ping OWNER TO admin;
 
 --
 -- Name: keycloak_group; Type: TABLE; Schema: public; Owner: admin
@@ -1361,22 +1377,6 @@ CREATE TABLE public.user_role_mapping (
 ALTER TABLE public.user_role_mapping OWNER TO admin;
 
 --
--- Name: username_login_failure; Type: TABLE; Schema: public; Owner: admin
---
-
-CREATE TABLE public.username_login_failure (
-    realm_id character varying(36) NOT NULL,
-    username character varying(255) NOT NULL,
-    failed_login_not_before integer,
-    last_failure bigint,
-    last_ip_failure character varying(255),
-    num_failures integer
-);
-
-
-ALTER TABLE public.username_login_failure OWNER TO admin;
-
---
 -- Name: web_origins; Type: TABLE; Schema: public; Owner: admin
 --
 
@@ -1387,14 +1387,6 @@ CREATE TABLE public.web_origins (
 
 
 ALTER TABLE public.web_origins OWNER TO admin;
-
---
--- Name: username_login_failure CONSTRAINT_17-2; Type: CONSTRAINT; Schema: public; Owner: admin
---
-
-ALTER TABLE ONLY public.username_login_failure
-    ADD CONSTRAINT "CONSTRAINT_17-2" PRIMARY KEY (realm_id, username);
-
 
 --
 -- Name: org_domain ORG_DOMAIN_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
@@ -1906,6 +1898,14 @@ ALTER TABLE ONLY public.identity_provider_mapper
 
 ALTER TABLE ONLY public.idp_mapper_config
     ADD CONSTRAINT constraint_idpmconfig PRIMARY KEY (idp_mapper_id, name);
+
+
+--
+-- Name: jgroups_ping constraint_jgroups_ping; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.jgroups_ping
+    ADD CONSTRAINT constraint_jgroups_ping PRIMARY KEY (address);
 
 
 --
