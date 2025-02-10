@@ -1,3 +1,7 @@
+## 1.7.0 (2025-02-10)
+
+- Upgrade deps for api project
+
 ## 1.6.0 (2025-02-10)
 
 - Upgrade deps for react project

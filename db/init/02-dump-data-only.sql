@@ -866,6 +866,8 @@ r40d9	26.0.5	1730915461
 --
 
 COPY public.offline_client_session (user_session_id, client_id, offline_flag, "timestamp", data, client_storage_provider, external_client_id, version) FROM stdin;
+cada6eb1-78e3-4404-afd1-0ec7b3f76ddf	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739210148	{"authMethod":"openid-connect","redirectUri":"http://localhost:5173/","notes":{"clientId":"acc4f3dc-25c9-4716-bfa5-cde9f19c8c32","scope":"openid","userSessionStartedAt":"1739210148","iss":"http://localhost:8080/realms/master","startedAt":"1739210148","response_type":"code","level-of-authentication":"-1","code_challenge_method":"S256","redirect_uri":"http://localhost:5173/","state":"7d0bcbb91f3a4618a50331012f959ca8","code_challenge":"XMyIRBrsXvG32ajLm6v9j1U1-DIJdBwZInfJulBTyus"}}	local	local	0
+a08655a1-53ea-45cd-9889-36b3411e0567	acc4f3dc-25c9-4716-bfa5-cde9f19c8c32	0	1739217305	{"authMethod":"openid-connect","redirectUri":"http://localhost:5173/","notes":{"clientId":"acc4f3dc-25c9-4716-bfa5-cde9f19c8c32","scope":"openid","userSessionStartedAt":"1739217305","iss":"http://localhost:8080/realms/master","startedAt":"1739217305","response_type":"code","level-of-authentication":"-1","code_challenge_method":"S256","redirect_uri":"http://localhost:5173/","state":"cc21bb5942bc489e867282979b972cc6","code_challenge":"CqRpzt4Ft_ssvbbdJh3WRt6DZIbDAu3-vzecMJUKAjE"}}	local	local	0
 \.
 
 
@@ -874,6 +876,8 @@ COPY public.offline_client_session (user_session_id, client_id, offline_flag, "t
 --
 
 COPY public.offline_user_session (user_session_id, user_id, realm_id, created_on, offline_flag, data, last_session_refresh, broker_session_id, version) FROM stdin;
+cada6eb1-78e3-4404-afd1-0ec7b3f76ddf	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	04d6226e-e85e-4251-b423-a3525954ba75	1739210148	0	{"ipAddress":"172.21.0.1","authMethod":"openid-connect","rememberMe":false,"started":0,"notes":{"KC_DEVICE_NOTE":"eyJpcEFkZHJlc3MiOiIxNzIuMjEuMC4xIiwib3MiOiJNYWMgT1MgWCIsIm9zVmVyc2lvbiI6IjEwLjE1LjciLCJicm93c2VyIjoiQ2hyb21lLzEzMi4wLjAiLCJkZXZpY2UiOiJNYWMiLCJsYXN0QWNjZXNzIjowLCJtb2JpbGUiOmZhbHNlfQ==","AUTH_TIME":"1739210148","authenticators-completed":"{\\"0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8\\":1739210148}"},"state":"LOGGED_IN"}	1739210148	\N	0
+a08655a1-53ea-45cd-9889-36b3411e0567	f03cf9b7-f9ed-44d9-9370-6135c0a5bab1	04d6226e-e85e-4251-b423-a3525954ba75	1739217305	0	{"ipAddress":"172.21.0.1","authMethod":"openid-connect","rememberMe":false,"started":0,"notes":{"KC_DEVICE_NOTE":"eyJpcEFkZHJlc3MiOiIxNzIuMjEuMC4xIiwib3MiOiJNYWMgT1MgWCIsIm9zVmVyc2lvbiI6IjEwLjE1LjciLCJicm93c2VyIjoiQ2hyb21lLzEzMi4wLjAiLCJkZXZpY2UiOiJNYWMiLCJsYXN0QWNjZXNzIjowLCJtb2JpbGUiOmZhbHNlfQ==","AUTH_TIME":"1739217305","authenticators-completed":"{\\"0c75cc68-1058-49a7-bdaa-d0f8ec69c1b8\\":1739217305}"},"state":"LOGGED_IN"}	1739217305	\N	0
 \.
 
 
