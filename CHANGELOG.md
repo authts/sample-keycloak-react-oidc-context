@@ -1,3 +1,7 @@
+## 1.9.0 (2025-02-11)
+
+- Upgrade Keycloak to 26.1.2
+
 ## 1.8.0 (2025-02-10)
 
 - Upgrade Keycloak to 26.1.1
