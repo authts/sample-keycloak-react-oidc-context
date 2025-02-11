@@ -33,6 +33,7 @@ Minimal, reproducible example for Keycloak + React.
 - [Disclaimers](#disclaimers)
 - [History](#history)
 - [Contributing](#contributing)
+- [Releases](#releases)
 
 <!-- tocstop -->
 
