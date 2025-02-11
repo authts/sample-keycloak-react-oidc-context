@@ -1,3 +1,7 @@
+## 1.9.1 (2025-02-11)
+
+- Separate docs for _Contributing_ vs _Releases_
+
 ## 1.9.0 (2025-02-11)
 
 - Upgrade Keycloak to 26.1.2
