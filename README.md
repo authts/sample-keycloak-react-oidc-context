@@ -355,14 +355,19 @@ This repo originally lived at [zach-betz-hln/mre-keycloak-react](https://github.
 
 1. Create a branch from `main`, or a fork of this repo
 1. Make your changes
-1. Run through the _Setup_ steps in this doc from scratch and confirm everything works
+1. Run through the **Setup** steps in this doc from scratch and confirm everything works
 1. Run the dump job
 
         docker compose -f compose.yml -f compose.jobs.yml run dump
 
-1. Increment the [semantic version](https://docs.npmjs.com/about-semantic-versioning). `<semver>` should be one of: `major` | `minor` | `patch`
+1. PR your changes to be reviewed
 
-        npm --no-git-tag-version version <semver>
+## Releases
+
+1. Create a branch from `main`
+1. Increment the [semantic version](https://docs.npmjs.com/about-semantic-versioning). `{semver}` should be one of: `major` | `minor` | `patch`
+
+        npm --no-git-tag-version version {semver}
 
 1. Update `CHANGELOG.md` with a new section
-1. PR your changes to be reviewed and merged
+1. PR your changes to be reviewed. Put the new semantic version in the PR title
