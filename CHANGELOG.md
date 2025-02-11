@@ -1,3 +1,7 @@
+## 1.9.2 (2025-02-11)
+
+- Regen markdown table of contents
+
 ## 1.9.1 (2025-02-11)
 
 - Separate docs for _Contributing_ vs _Releases_
