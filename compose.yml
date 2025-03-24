@@ -15,6 +15,7 @@ services:
       context: ./kc
     ports:
       - ${KC_HTTP_PORT}:${KC_HTTP_PORT}
+      - ${KC_HTTP_MANAGEMENT_PORT}:${KC_HTTP_MANAGEMENT_PORT}
     env_file:
       - ./.env 
 

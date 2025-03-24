@@ -3,21 +3,10 @@ import { type FC, type ReactNode, useEffect, useState } from 'react';
 import { hasAuthParams, useAuth } from 'react-oidc-context';
 import { Alert } from './Alert.tsx';
 
-const getMetadata = async (metadataUrl?: string) => {
-  if (!metadataUrl) {
-    throw new Error('metadataUrl is required');
-  }
-  let response: Response;
-  try {
-    response = await fetch(metadataUrl, {
-      mode: 'no-cors',
-      headers: { accept: 'application/jwk-set+json, application/json' },
-    });
-  } catch {
-    throw new Error(`Unable to fetch metadataUrl\n\n${metadataUrl}\n\nPlease confirm your auth server is up`);
-  }
+const queryFn = async () => {
+  const response = await fetch('/api/auth-well-known-config');
   if (!response.ok) {
-    throw new Error(`Unexpected response status: ${response.status}`);
+    throw new Error('Please confirm your auth server is up');
   }
   return await response.json();
 };
@@ -31,8 +20,8 @@ export const ProtectedApp: FC<ProtectedAppProps> = (props) => {
 
   const { isPending: metadataIsPending, error: metadataError } = useQuery({
     queryKey: ['getMetadata'],
+    queryFn,
     retry: false,
-    queryFn: () => getMetadata(auth.settings.metadataUrl),
   });
 
   const auth = useAuth();
