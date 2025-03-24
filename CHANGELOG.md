@@ -1,3 +1,12 @@
+## 2.0.0 (2025-03-24)
+
+- Align biome config with [#45](https://github.com/authts/sample-keycloak-react-oidc-context/pull/45)
+- Fix ProtectedApp query with [#46](https://github.com/authts/sample-keycloak-react-oidc-context/pull/46)
+    - Enable kc health checks and expose on port 9000
+    - Rename env var `API_JSON_WEB_KEY_SET_URL` to `API_AUTH_JSON_WEB_KEY_SET_URL`
+    - Add new env var: `API_AUTH_WELL_KNOWN_CONFIG_URL`
+    - Add morgan logging to api
+
 ## 1.10.0 (2025-03-24)
 
 - Fix infinite error message flicker in Firefox when the auth server is down with [#42](https://github.com/authts/sample-keycloak-react-oidc-context/pull/42)
