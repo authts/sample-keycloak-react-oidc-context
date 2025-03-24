@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../constants.ts';
@@ -51,7 +51,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = (props) => {
+export const Layout: FC<LayoutProps> = (props) => {
   const { children } = props;
   const auth = useAuth();
   const navigate = useNavigate();
@@ -62,22 +62,22 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       protected: true,
       action: () => {
         navigate(appRoutes.home);
-      }
+      },
     },
     {
       text: 'Playground',
       protected: true,
       action: () => {
         navigate(appRoutes.playground);
-      }
+      },
     },
     {
       text: 'Logout',
       protected: false,
       action: () => {
         void auth.signoutRedirect();
-      }
-    }
+      },
+    },
   ].filter((item) => {
     return auth.isAuthenticated || !item.protected;
   });

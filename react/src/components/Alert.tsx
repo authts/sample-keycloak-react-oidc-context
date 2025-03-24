@@ -1,9 +1,11 @@
+import type { FC } from 'react';
+
 interface AlertProps {
   variant: 'success' | 'error';
   children: React.ReactNode;
 }
 
-export const Alert: React.FC<AlertProps> = (props) => {
+export const Alert: FC<AlertProps> = (props) => {
   const { variant, children } = props;
 
   let backgroundColor: string | undefined;

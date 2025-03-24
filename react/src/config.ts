@@ -10,7 +10,7 @@ export const userManager = new UserManager({
   // biome-ignore lint/style/useNamingConvention: Expected
   post_logout_redirect_uri: window.location.origin,
   userStore: new WebStorageStateStore({ store: window.sessionStorage }),
-  monitorSession: true // this allows cross tab login/logout detection
+  monitorSession: true, // this allows cross tab login/logout detection
 });
 
 export const onSigninCallback = () => {

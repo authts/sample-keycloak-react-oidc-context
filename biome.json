@@ -1,7 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
-    "ignore": ["dist"]
+    "ignore": ["**/node_modules/**", "**/dist/**"]
   },
   "organizeImports": {
     "enabled": true
@@ -14,7 +19,8 @@
         "noVoid": "off"
       },
       "correctness": {
-        "noNodejsModules": "off"
+        "noNodejsModules": "off",
+        "noUndeclaredDependencies": "off"
       },
       "suspicious": {
         "noConsole": "off",
@@ -31,8 +37,13 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "trailingCommas": "none"
+      "trailingCommas": "all"
     },
     "globals": ["React"]
+  },
+  "css": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
   }
 }

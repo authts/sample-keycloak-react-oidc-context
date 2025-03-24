@@ -1,9 +1,11 @@
 {
   "version": "1.10.0",
   "scripts": {
+    "check": "biome check --write .",
     "toc": "markdown-toc -i README.md"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "markdown-toc": "^1.2.0"
   }
 }
