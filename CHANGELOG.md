@@ -1,3 +1,7 @@
+## 1.10.0 (2025-03-24)
+
+- Fix infinite error message flicker in Firefox when the auth server is down with [#42](https://github.com/authts/sample-keycloak-react-oidc-context/pull/42)
+
 ## 1.9.2 (2025-02-11)
 
 - Regen markdown table of contents
