@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import type { FC } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { sleep } from '../../../utils.ts';
 import { Alert } from '../../Alert.tsx';
 
-export const WithToken: React.FC = () => {
+export const WithToken: FC = () => {
   const auth = useAuth();
 
   const queryFn = async () => {
@@ -14,8 +15,8 @@ export const WithToken: React.FC = () => {
 
     const response = await fetch(url, {
       headers: {
-        authorization: `Bearer ${auth.user?.access_token}`
-      }
+        authorization: `Bearer ${auth.user?.access_token}`,
+      },
     });
 
     if (!response.ok) {
@@ -27,8 +28,8 @@ export const WithToken: React.FC = () => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ['WithToken'],
+    queryFn,
     retry: false, // only setting to `false` for sake of demo, normally you'd want this `true`
-    queryFn
   });
 
   return error ? (

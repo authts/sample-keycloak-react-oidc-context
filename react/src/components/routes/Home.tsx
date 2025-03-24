@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { SimpleTable } from '../SimpleTable.tsx';
 
@@ -14,12 +15,12 @@ const createRows = (data?: unknown): Row[] => {
   return Object.entries(data).map(([key, value]) => {
     return {
       label: key,
-      value: JSON.stringify(value)
+      value: JSON.stringify(value),
     };
   });
 };
 
-export const Home: React.FC = () => {
+export const Home: FC = () => {
   const auth = useAuth();
 
   return (

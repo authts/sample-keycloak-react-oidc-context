@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { type ReactNode, useEffect, useState } from 'react';
+import { type FC, type ReactNode, useEffect, useState } from 'react';
 import { hasAuthParams, useAuth } from 'react-oidc-context';
 import { Alert } from './Alert.tsx';
 
@@ -11,7 +11,7 @@ const getMetadata = async (metadataUrl?: string) => {
   try {
     response = await fetch(metadataUrl, {
       mode: 'no-cors',
-      headers: { accept: 'application/jwk-set+json, application/json' }
+      headers: { accept: 'application/jwk-set+json, application/json' },
     });
   } catch {
     throw new Error(`Unable to fetch metadataUrl\n\n${metadataUrl}\n\nPlease confirm your auth server is up`);
@@ -26,13 +26,13 @@ interface ProtectedAppProps {
   children: ReactNode;
 }
 
-export const ProtectedApp: React.FC<ProtectedAppProps> = (props) => {
+export const ProtectedApp: FC<ProtectedAppProps> = (props) => {
   const { children } = props;
 
   const { isPending: metadataIsPending, error: metadataError } = useQuery({
     queryKey: ['getMetadata'],
     retry: false,
-    queryFn: () => getMetadata(auth.settings.metadataUrl)
+    queryFn: () => getMetadata(auth.settings.metadataUrl),
   });
 
   const auth = useAuth();

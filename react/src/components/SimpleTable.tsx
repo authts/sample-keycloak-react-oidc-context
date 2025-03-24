@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import type { FC } from 'react';
 
 const ScrollableData = styled.div`
   overflow-x: auto;
@@ -26,7 +27,7 @@ interface SimpleTableProps {
   rows: Row[];
 }
 
-export const SimpleTable: React.FC<SimpleTableProps> = (props) => {
+export const SimpleTable: FC<SimpleTableProps> = (props) => {
   const { rows } = props;
 
   return (

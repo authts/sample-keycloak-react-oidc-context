@@ -8,7 +8,7 @@ export default defineConfig(({ command, mode }) => {
 
   const commonConfig: UserConfigExport = {
     plugins: [react()],
-    base: '/'
+    base: '/',
   };
 
   if (command === 'serve') {
@@ -25,15 +25,15 @@ export default defineConfig(({ command, mode }) => {
             rewrite: (path) => {
               // biome-ignore lint/performance/useTopLevelRegex: We accept the perf hit
               return path.replace(/^\/api/, '');
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     };
   }
 
   // command === 'build'
   return {
-    ...commonConfig
+    ...commonConfig,
   };
 });

@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+import type { FC } from 'react';
 import { sleep } from '../../../utils.ts';
 import { Alert } from '../../Alert.tsx';
 
-export const WithoutToken: React.FC = () => {
+export const WithoutToken: FC = () => {
   const queryFn = async () => {
     // simulate slow network
     await sleep(500);
@@ -20,8 +21,8 @@ export const WithoutToken: React.FC = () => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ['WithoutToken'],
+    queryFn,
     retry: false, // only setting to `false` for sake of demo, normally you'd want this `true`
-    queryFn
   });
 
   return error ? (

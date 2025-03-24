@@ -1,7 +1,8 @@
+import type { FC } from 'react';
 import { WithToken } from './WithToken.tsx';
 import { WithoutToken } from './WithoutToken.tsx';
 
-export const Playground: React.FC = () => {
+export const Playground: FC = () => {
   return (
     <>
       <h1>Playground</h1>
