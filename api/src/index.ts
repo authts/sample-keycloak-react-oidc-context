@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import { requireEnvVar } from './envUtils.js';
 import { verifyJwtMiddleware } from './jwtUtils.js';
 import type { AugmentedRequest } from './types.js';
 
@@ -9,19 +10,17 @@ type CustomError = {
 
 const app = express();
 
-// biome-ignore lint/style/noNonNullAssertion: We expect this env var to always be populated
-const port = Number(process.env.API_PORT!);
+const port = Number(requireEnvVar('API_PORT'));
 
 app.use(morgan('tiny'));
 
 app.get('/auth-well-known-config', async (_req, res) => {
   try {
-    // biome-ignore lint/style/noNonNullAssertion: We expect this env var to always be populated
-    const response = await fetch(process.env.API_AUTH_WELL_KNOWN_CONFIG_URL!, {
+    const response = await fetch(requireEnvVar('API_AUTH_WELL_KNOWN_CONFIG_URL'), {
       headers: { accept: 'application/json' },
     });
     if (!response.ok) {
-      return res.status(500).json({ error: `Unexpected response status: ${response.status}` } satisfies CustomError);
+      throw new Error(`Unexpected response status: ${response.status}`);
     }
     const body = await response.json();
     return res.json(body);
@@ -33,7 +32,7 @@ app.get('/auth-well-known-config', async (_req, res) => {
 
 app.get('/payload', verifyJwtMiddleware, (req, res) => {
   const data = (req as AugmentedRequest).payload;
-  res.json(data);
+  return res.json(data);
 });
 
 const server = app.listen(port, () => {
