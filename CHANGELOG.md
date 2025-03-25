@@ -1,3 +1,10 @@
+## 2.1.0 (2025-03-25)
+
+- Renames and refactors with [#48](https://github.com/authts/sample-keycloak-react-oidc-context/pull/48)
+    - Add `requireEnvVar` util then remove `biome-ignore lint/style/noNonNullAssertion` comments where relevant
+    - Add `docker-compose-all` script to main `package.json` for convenience
+    - Renames in `react/src/components/ProtectedApp.tsx` and prefer if-statements for render logic
+
 ## 2.0.0 (2025-03-24)
 
 - Align biome config with [#45](https://github.com/authts/sample-keycloak-react-oidc-context/pull/45)
