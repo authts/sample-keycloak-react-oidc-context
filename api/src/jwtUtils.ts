@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 import { type JWTVerifyGetKey, createRemoteJWKSet, jwtVerify } from 'jose';
+import { requireEnvVar } from './envUtils.js';
 import type { AugmentedRequest } from './types.js';
 
-// biome-ignore lint/style/noNonNullAssertion: We expect this env var to always be populated
-const jsonWebKeySetUrl = process.env.API_AUTH_JSON_WEB_KEY_SET_URL!;
+const jsonWebKeySetUrl = requireEnvVar('API_AUTH_JSON_WEB_KEY_SET_URL');
 
 // This function is cached so that the json web key set is not looked up on every request
 let getJsonWebKeySet: JWTVerifyGetKey | null = null;

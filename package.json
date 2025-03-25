@@ -2,7 +2,8 @@
   "version": "2.0.0",
   "scripts": {
     "check": "biome check --write .",
-    "toc": "markdown-toc -i README.md"
+    "toc": "markdown-toc -i README.md",
+    "docker-compose-all": "cp .env.sample .env && docker compose build && docker compose up"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
