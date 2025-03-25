@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scripts": {
     "check": "biome check --write .",
     "toc": "markdown-toc -i README.md",
