@@ -83,7 +83,10 @@ In one terminal, run the Postgres database, Keycloak server, Mailhog server, Exp
 
         docker compose up
 
-1. Wait until you see a message from the Keycloak server like this: _Running the server in development mode. DO NOT use this configuration in production._
+1. Wait until you see a message from the Keycloak server like this:
+
+    > INFO  [io.quarkus] (main) Profile dev activated. 
+
 1. See [links](#links) for username and password
 
 ### OPTIONAL: Run React app outside of Docker Compose
