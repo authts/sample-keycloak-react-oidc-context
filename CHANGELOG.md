@@ -1,3 +1,7 @@
+## 2.1.1 (2025-05-15)
+
+- Up react deps with [#51](https://github.com/authts/sample-keycloak-react-oidc-context/pull/51)
+
 ## 2.1.0 (2025-03-25)
 
 - Renames and refactors with [#48](https://github.com/authts/sample-keycloak-react-oidc-context/pull/48)
