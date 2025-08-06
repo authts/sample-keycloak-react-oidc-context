@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 import { appRoutes } from '../constants.ts';
 import { Home } from './routes/Home.tsx';
 import { NotFound } from './routes/NotFound.tsx';

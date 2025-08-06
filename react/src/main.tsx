@@ -2,7 +2,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { AuthProvider } from 'react-oidc-context';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { App } from './components/App.tsx';
 import { Layout } from './components/Layout.tsx';
 import { ProtectedApp } from './components/ProtectedApp.tsx';

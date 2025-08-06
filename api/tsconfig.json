@@ -1,6 +1,6 @@
 {
-  // See https://www.npmjs.com/package/@tsconfig/node20
-  "extends": "@tsconfig/node20/tsconfig.json",
+  // See https://www.npmjs.com/package/@tsconfig/node24
+  "extends": "@tsconfig/node24/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist"
   }

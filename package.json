@@ -3,10 +3,12 @@
   "scripts": {
     "check": "biome check --write .",
     "toc": "markdown-toc -i README.md",
-    "docker-compose-all": "cp .env.sample .env && docker compose build && docker compose up"
+    "docker-compose-all": "cp .env.sample .env && docker compose build && docker compose up",
+    "ncu:check": "npx npm-check-updates",
+    "ncu:upgrade": "npx npm-check-updates -i"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.0.6",
+    "@biomejs/biome": "2.1.3",
     "markdown-toc": "^1.2.0"
   }
 }

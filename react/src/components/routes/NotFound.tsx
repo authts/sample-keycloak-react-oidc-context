@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export const NotFound: FC = () => {
   const location = useLocation();

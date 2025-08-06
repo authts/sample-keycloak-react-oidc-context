@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [24.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -33,11 +33,6 @@ jobs:
           restore-keys: |
             build-${{ github.head_ref }}-
             build-refs/heads/main-
-
-      # root
-      #- run: |
-      #    npm ci
-      #    npm run build
 
       - name: api
         run: |
