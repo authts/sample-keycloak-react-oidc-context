@@ -1,4 +1,4 @@
-FROM node:22-bookworm
+FROM node:24-bookworm
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install

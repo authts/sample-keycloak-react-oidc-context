@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 import { useAuth } from 'react-oidc-context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { appRoutes } from '../constants.ts';
 
 const Container = styled.div`
