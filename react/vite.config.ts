@@ -1,8 +1,7 @@
 import react from '@vitejs/plugin-react';
-import { type UserConfigExport, defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type UserConfigExport } from 'vite';
 
 // https://vitejs.dev/config/
-// biome-ignore lint/style/noDefaultExport: Expected
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd());
 
@@ -23,7 +22,6 @@ export default defineConfig(({ command, mode }) => {
             target: env.VITE_API_BASE_URL,
             changeOrigin: true,
             rewrite: (path) => {
-              // biome-ignore lint/performance/useTopLevelRegex: We accept the perf hit
               return path.replace(/^\/api/, '');
             },
           },

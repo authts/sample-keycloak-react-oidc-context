@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { type JWTVerifyGetKey, createRemoteJWKSet, jwtVerify } from 'jose';
+import { createRemoteJWKSet, type JWTVerifyGetKey, jwtVerify } from 'jose';
 import { requireEnvVar } from './envUtils.js';
 import type { AugmentedRequest } from './types.js';
 

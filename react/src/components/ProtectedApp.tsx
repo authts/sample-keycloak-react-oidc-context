@@ -46,11 +46,7 @@ export const ProtectedApp: FC<ProtectedAppProps> = (props) => {
   const anyErrorMessage = getAuthHealthError?.message || auth.error?.message;
 
   if (anyLoading) {
-    return (
-      <>
-        <h1>Loading...</h1>
-      </>
-    );
+    return <h1>Loading...</h1>;
   }
   if (anyErrorMessage) {
     return (
