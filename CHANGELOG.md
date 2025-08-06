@@ -1,3 +1,8 @@
+## 2.2.0 (2025-08-06)
+
+- Migrate biome to 2.x. See [#56](https://github.com/authts/sample-keycloak-react-oidc-context/pull/56)
+- Upgrade root, api, and react deps. See [#57](https://github.com/authts/sample-keycloak-react-oidc-context/pull/57)
+
 ## 2.1.1 (2025-05-15)
 
 - Up react deps with [#51](https://github.com/authts/sample-keycloak-react-oidc-context/pull/51)
