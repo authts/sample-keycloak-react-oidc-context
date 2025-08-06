@@ -28,7 +28,7 @@ export const WithoutToken: FC = () => {
   return error ? (
     <Alert variant="error">{error.message}</Alert>
   ) : isPending ? (
-    <>Loading...</>
+    <div>Loading...</div>
   ) : (
     <Alert variant="success">{JSON.stringify(data, null, 2)}</Alert>
   );

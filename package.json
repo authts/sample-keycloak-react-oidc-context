@@ -6,7 +6,7 @@
     "docker-compose-all": "cp .env.sample .env && docker compose build && docker compose up"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "2.0.6",
     "markdown-toc": "^1.2.0"
   }
 }
